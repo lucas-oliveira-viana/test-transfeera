@@ -7,10 +7,13 @@ import { useTranslation } from "react-i18next";
 import AddIcon from "../../assets/svg/add.svg";
 import styles from "./Home.module.scss";
 import { TReceiver } from "../../types";
+import Table from "../../components/atoms/Table/Table";
 
 export default function Home() {
   const dispatch = useDispatch();
-  const receivers = useSelector<RootState, TReceiver[]>((state) => state.receivers);
+  const receivers = useSelector<RootState, TReceiver[]>(
+    (state) => state.receivers
+  );
 
   const { t } = useTranslation();
 
@@ -36,7 +39,7 @@ export default function Home() {
         </button>
       </div>
       <main className={styles.content}>
-        <p style={{ wordWrap: "break-word" }}>{JSON.stringify(receivers)}</p>
+        <Table data={receivers} />
       </main>
     </>
   );
