@@ -10,5 +10,9 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "types": ["@testing-library/jest-dom"],
+    "paths": {
+      "@core/*": ["./src/core/*"],
+      "@shared/*": ["./src/shared/*"]
+    }
   }
 }
