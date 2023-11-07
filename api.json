@@ -321,6 +321,22 @@
       "status": "rascunho",
       "created_at": "2023-10-25 16:20:10-03",
       "updated_at": "2023-10-25 16:20:10-03"
+    },
+    {
+      "id": "e4e37b74-7d07-11ee-b962-0242ac120002",
+      "name": "Lucas Test",
+      "email": "rafael.costa@exemplo.com",
+      "tax_id": "79915139000115",
+      "branch": "3402",
+      "account": "517638",
+      "account_type": "Conta Poupança",
+      "bank_name": "Santander",
+      "bank_code": "033",
+      "pix_key": "79915139000115",
+      "pix_key_type": "cnpj",
+      "status": "validado",
+      "created_at": "2023-10-25 16:01:10-03",
+      "updated_at": "2023-10-25 16:01:10-03"
     }
   ]
 }
