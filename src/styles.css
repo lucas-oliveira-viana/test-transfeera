@@ -4,3 +4,7 @@
   box-sizing: content-box;
   margin: 0;
 }
+
+body {
+  height: 100vh;
+}

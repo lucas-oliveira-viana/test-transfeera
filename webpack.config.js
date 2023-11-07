@@ -11,6 +11,12 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
     static: './dist',
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001', // JSON server URL
+        changeOrigin: true,
+      },
+    },
   },
   module: {
     rules: [
