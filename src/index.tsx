@@ -3,7 +3,7 @@ import App from "./App";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 import { Provider } from "react-redux";
-import store from "./store";
+import store from "./redux/store";
 
 const container = document.getElementById("root");
 const root = createRoot(container!);

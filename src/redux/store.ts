@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import receiverReducer from "./Receiver.store";
+import receiverReducer from "./receiver/Receiver.store";
 
 const store = configureStore({
   reducer: {

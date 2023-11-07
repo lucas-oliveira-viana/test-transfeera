@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import receiversService from "./services/receivers";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "./store";
-import { set as setReceiver } from "./store/Receiver.store";
+import { RootState } from "./redux/store";
+import { set as setReceiver } from "./redux/receiver/Receiver.store";
 
 export default function App() {
   const dispatch = useDispatch();
