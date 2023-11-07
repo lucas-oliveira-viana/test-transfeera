@@ -21,5 +21,5 @@ export default function App() {
     fetchReceivers();
   }, []);
 
-  return <div>{JSON.stringify(receivers, null, 2)}</div>;
+  return <p>{JSON.stringify(receivers)}</p>;
 }

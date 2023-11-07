@@ -1,11 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+export type Receiver = {
+  id: number;
+  name: string;
+};
 
 const receiver = createSlice({
   name: "receivers",
   initialState: [],
   reducers: {
-    set(_, param) {
-      return param.payload;
+    set(_, action: PayloadAction<Receiver[]>) {
+      return action.payload;
     },
   },
 });
