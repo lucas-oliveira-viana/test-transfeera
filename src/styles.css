@@ -1,3 +1,5 @@
+@import "./styles/font.css";
+
 * {
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
@@ -7,4 +9,5 @@
 
 body {
   height: 100vh;
+  font-family: "Roboto", sans-serif;
 }
