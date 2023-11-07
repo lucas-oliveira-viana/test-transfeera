@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TReceiver } from "../../types";
+import { TReceiver } from "../../../shared/types";
 
 const receiver = createSlice({
   name: "receivers",

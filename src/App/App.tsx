@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Home from "../pages/Home/Home";
-import Tabs from "../components/atoms/Tabs/Tabs";
-import Header from "../components/atoms/Header/Header";
-import { PageEnum } from "../enum";
+import Tabs from "../core/components/atoms/Tabs/Tabs";
+import Header from "../core/components/atoms/Header/Header";
+import { PageEnum } from "../shared/enum";
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageEnum>(PageEnum.HOME);
