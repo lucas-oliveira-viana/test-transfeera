@@ -1,7 +1,11 @@
 import React from "react";
-import "./Header.scss";
 import Logo from "../../../assets/svg/transfeera-logo.svg";
+import styles from "./Header.module.scss";
 
 export default function Header() {
-  return <header><Logo /></header>;
+  return (
+    <header className={styles.header}>
+      <Logo />
+    </header>
+  );
 }

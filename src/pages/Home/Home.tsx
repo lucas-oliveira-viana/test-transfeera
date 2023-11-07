@@ -3,10 +3,16 @@ import receiversService from "../../services/receivers";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { set as setReceiver } from "../../redux/receiver/Receiver.store";
+import { useTranslation } from "react-i18next";
+import AddIcon from "../../assets/svg/add.svg";
+import styles from "./Home.module.scss";
+import { TReceiver } from "../../types";
 
 export default function Home() {
   const dispatch = useDispatch();
-  const receivers = useSelector<RootState>((state) => state.receivers);
+  const receivers = useSelector<RootState, TReceiver[]>((state) => state.receivers);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     async function fetchReceivers() {
@@ -21,5 +27,17 @@ export default function Home() {
     fetchReceivers();
   }, []);
 
-  return <p style={{ wordWrap: "break-word" }}>{JSON.stringify(receivers)}</p>;
+  return (
+    <>
+      <div className={styles.subheader}>
+        <span className={styles.subheader_text}>{t("tabs.yourReceivers")}</span>
+        <button className={styles.subheader_button}>
+          <AddIcon />
+        </button>
+      </div>
+      <main className={styles.content}>
+        <p style={{ wordWrap: "break-word" }}>{JSON.stringify(receivers)}</p>
+      </main>
+    </>
+  );
 }

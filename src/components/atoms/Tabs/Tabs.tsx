@@ -1,14 +1,14 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import "./Tabs.scss";
+import styles from "./Tabs.module.scss";
 
 export default function Tabs() {
   const { t } = useTranslation();
   return (
-    <nav>
-      <div className="tab-wrapper">
-        <button>{t("tabs.yourReceivers")}</button>
-      </div>
+    <nav className={styles.nav}>
+      <button className={styles.button}>
+        <span className={styles.text}>{t("tabs.yourReceivers")}</span>
+      </button>
     </nav>
   );
 }

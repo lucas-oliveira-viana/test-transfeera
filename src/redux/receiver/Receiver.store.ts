@@ -1,15 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-export type Receiver = {
-  id: number;
-  name: string;
-};
+import { TReceiver } from "../../types";
 
 const receiver = createSlice({
   name: "receivers",
-  initialState: [],
+  initialState: [] as TReceiver[],
   reducers: {
-    set(_, action: PayloadAction<Receiver[]>) {
+    set(_, action: PayloadAction<TReceiver[]>) {
       return action.payload;
     },
   },

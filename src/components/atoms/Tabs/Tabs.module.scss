@@ -1,22 +1,28 @@
 @import "../../../styles/tokens.scss";
 
-nav {
+.nav {
   background-color: $cyan-3;
   height: 50px;
   font-weight: 400;
   padding-left: 50px;
 }
 
-button {
+.text {
   color: $white;
-  border: none;
-  background-color: transparent;
+  cursor: pointer;
 }
 
-.tab-wrapper {
+.button {
+  border: none;
+  background-color: transparent;
   display: flex;
   align-items: center;
   height: 100%;
   border-bottom: 3px solid $white;
   width: fit-content;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0000000c;
+  }
 }
