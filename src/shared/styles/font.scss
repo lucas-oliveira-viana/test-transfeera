@@ -1,7 +1,7 @@
 @mixin roboto-setup($font-weight-name, $font-weight-value) {
   @font-face {
     font-family: 'Roboto';
-    src: url("/src/assets/fonts/Roboto-#{$font-weight-name}.ttf") format("truetype");
+    src: url("@shared/assets/fonts/Roboto-#{$font-weight-name}.ttf") format("truetype");
     font-weight: #{$font-weight-value};
     font-style: normal;
   }

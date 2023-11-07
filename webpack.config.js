@@ -46,6 +46,10 @@ module.exports = {
     ],
   },
   resolve: {
+    alias: {
+      "@core": path.resolve(__dirname, "src/core"),
+      "@shared": path.resolve(__dirname, "src/shared"),
+    },
     extensions: [".jsx", ".ts", ".js", ".tsx"],
   },
   plugins: [
