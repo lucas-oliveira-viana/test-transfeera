@@ -1,9 +1,10 @@
 @import "./styles/font.scss";
+@import "./styles/tokens.scss";
 
 * {
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   margin: 0;
 }
 

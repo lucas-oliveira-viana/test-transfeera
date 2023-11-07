@@ -44,6 +44,9 @@
     "@reduxjs/toolkit": "^1.9.7",
     "@types/react": "^18.2.33",
     "@types/react-dom": "^18.2.14",
+    "i18next": "^23.6.0",
+    "i18next-browser-languagedetector": "^7.1.0",
+    "react-i18next": "^13.3.1",
     "react-redux": "^8.1.3"
   }
 }

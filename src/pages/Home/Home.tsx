@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import receiversService from "./services/receivers";
+import receiversService from "../../services/receivers";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "./redux/store";
-import { set as setReceiver } from "./redux/receiver/Receiver.store";
+import { RootState } from "../../redux/store";
+import { set as setReceiver } from "../../redux/receiver/Receiver.store";
 
-export default function App() {
+export default function Home() {
   const dispatch = useDispatch();
   const receivers = useSelector<RootState>((state) => state.receivers);
 
@@ -21,5 +21,5 @@ export default function App() {
     fetchReceivers();
   }, []);
 
-  return <p>{JSON.stringify(receivers)}</p>;
+  return <p style={{ wordWrap: "break-word" }}>{JSON.stringify(receivers)}</p>;
 }

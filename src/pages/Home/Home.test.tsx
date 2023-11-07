@@ -1,6 +1,6 @@
 import React from "react";
-import App from "./App";
-import api from "./services/base";
+import Home from "./Home";
+import api from "../../services/base";
 import { render, screen } from "@testing-library/react";
 import { useDispatch, useSelector } from "react-redux";
 import "@testing-library/jest-dom";
@@ -10,7 +10,7 @@ jest.mock("react-redux", () => ({
   useSelector: jest.fn(),
 }));
 
-describe("App tests", () => {
+describe("Home tests", () => {
   it("should render the list of receivers", async () => {
     const mockReceivers = [{ id: 1, name: "John Doe" }];
 
@@ -21,7 +21,7 @@ describe("App tests", () => {
       data: mockReceivers,
     });
 
-    render(<App />);
+    render(<Home />);
 
     const element = await screen.findByText(
       JSON.stringify({ receivers: mockReceivers })

@@ -1,0 +1,65 @@
+$gray-1: #cdd6de;
+$gray-2: #b2c1cd;
+$gray-3: #9dadbb;
+$gray-4: #72818d;
+$gray-5: #4d565d;
+
+$blue-1: #6cc8f7;
+$blue-2: #00aef3;
+$blue-3: #0096ed;
+$blue-4: #006cb2;
+$blue-5: #004876;
+
+$cyan-1: #7de1d6;
+$cyan-2: #1fd1c2;
+$cyan-3: #1fbfae;
+$cyan-4: #009182;
+$cyan-5: #005f56;
+
+$yellow-1: #ffdda0;
+$yellow-2: #ffcb71;
+$yellow-3: #ffb748;
+$yellow-4: #c68b2e;
+$yellow-5: #845c1e;
+
+$red-1: #ff7d9c;
+$red-2: #ff3569;
+$red-3: #ff003a;
+$red-4: #cb0026;
+$red-5: #870017;
+
+$white: #fff;
+
+:root {
+  --gray-1: #{$gray-1};
+  --gray-2: #{$gray-2};
+  --gray-3: #{$gray-3};
+  --gray-4: #{$gray-4};
+  --gray-5: #{$gray-5};
+
+  --blue-1: #{$blue-1};
+  --blue-2: #{$blue-2};
+  --blue-3: #{$blue-3};
+  --blue-4: #{$blue-4};
+  --blue-5: #{$blue-5};
+
+  --cyan-1: #{$cyan-1};
+  --cyan-2: #{$cyan-2};
+  --cyan-3: #{$cyan-3};
+  --cyan-4: #{$cyan-4};
+  --cyan-5: #{$cyan-5};
+
+  --yellow-1: #{$yellow-1};
+  --yellow-2: #{$yellow-2};
+  --yellow-3: #{$yellow-3};
+  --yellow-4: #{$yellow-4};
+  --yellow-5: #{$yellow-5};
+
+  --red-1: #{$red-1};
+  --red-2: #{$red-2};
+  --red-3: #{$red-3};
+  --red-4: #{$red-4};
+  --red-5: #{$red-5};
+
+  --white: #{$white};
+}
