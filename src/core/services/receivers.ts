@@ -1,4 +1,4 @@
-import { TReceiver } from "@shared/types";
+import { TReceiver } from "@core/types";
 import api from "./base";
 
 async function getReceivers() {

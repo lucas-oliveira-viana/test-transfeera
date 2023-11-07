@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import receiverReducer, { set } from "./Receiver.store";
 import { RootState } from "../store";
-import { TPixKey, TStatus } from "@shared/types";
+import { TPixKey, TStatus } from "@core/types";
 
 describe("Redux Store Test", () => {
   let store: ReturnType<typeof configureStore>;
