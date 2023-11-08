@@ -8,6 +8,7 @@ import AddIcon from "@shared/assets/svg/add.svg";
 import styles from "./Home.module.scss";
 import { TReceiver } from "@core/types";
 import Table from "@core/components/atoms/Table/Table";
+import { receiversTableConfig } from "./ReceiversTableConfig/ReceiversTableConfig";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -39,7 +40,10 @@ export default function Home() {
         </button>
       </div>
       <main className={styles.content}>
-        <Table data={receivers} />
+        <Table
+          config={receiversTableConfig}
+          data={receivers}
+        />
       </main>
     </>
   );

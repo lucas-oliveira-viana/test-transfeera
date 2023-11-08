@@ -1,30 +1,38 @@
+import { TTableConfig } from "@core/types";
 import React from "react";
 
-type Props = {
-  data: Array<{ [key: string]: any }>;
+type Props<T> = {
+  config: TTableConfig<T>;
+  data: Array<T>;
 };
 
-export default function Table({ data }: Props) {
+export default function Table<T>({ config, data }: Props<T>) {
   if (data.length === 0) {
     return <div>Empty</div>;
   }
 
-  const columnHeaders = Object.keys(data[0]);
+  const { style } = config;
 
   return (
-    <table>
+    <table className={style.table}>
       <thead>
         <tr>
-          {columnHeaders.map((header) => (
-            <th key={header}>{header}</th>
+          {config.columns.map((column) => (
+            <th className={style.th} key={column.key.toString()}>
+              {column.label}
+            </th>
           ))}
         </tr>
       </thead>
       <tbody>
         {data.map((item, index) => (
-          <tr key={index}>
-            {columnHeaders.map((header) => (
-              <td key={header}>{item[header]}</td>
+          <tr className={style.tr} key={index}>
+            {config.columns.map((column) => (
+              <td className={style.td} key={`${column.key.toString()}-row`}>
+                {column.render
+                  ? column.render(item)
+                  : (item[column.key] as string)}
+              </td>
             ))}
           </tr>
         ))}

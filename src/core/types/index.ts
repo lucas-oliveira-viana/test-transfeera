@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type TPixKey = "aleatoria" | "cnpj" | "cpf" | "email";
 export type TStatus = "validado" | "rascunho";
 export type TReceiver = {
@@ -15,4 +17,14 @@ export type TReceiver = {
   status: TStatus;
   created_at: string;
   updated_at: string;
+};
+
+export type TColumnConfig<T> = {
+  label: string;
+  key: keyof T;
+  render?: (data: T) => ReactNode;
+};
+export type TTableConfig<T> = {
+  columns: TColumnConfig<T>[];
+  style?: { [key: string]: string };
 };
