@@ -1,7 +1,8 @@
 @mixin roboto-setup($font-weight-name, $font-weight-value) {
   @font-face {
-    font-family: 'Roboto';
-    src: url("@shared/assets/fonts/Roboto-#{$font-weight-name}.ttf") format("truetype");
+    font-family: "Roboto";
+    src: url("@shared/assets/fonts/Roboto-#{$font-weight-name}.ttf")
+      format("truetype");
     font-weight: #{$font-weight-value};
     font-style: normal;
   }
@@ -13,3 +14,5 @@
 @include roboto-setup("Medium", 500);
 @include roboto-setup("Bold", 700);
 @include roboto-setup("Black", 900);
+
+$default-font-family: "Roboto", sans-serif;

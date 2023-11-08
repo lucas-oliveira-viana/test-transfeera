@@ -1,0 +1,12 @@
+.base {
+  border-width: 1px;
+  border-style: solid;
+  font-size: 0.875rem;
+  padding: 17px 52px;
+  cursor: pointer;
+  border-radius: 4px;
+
+  &:hover {
+    opacity: .7;
+  }
+}

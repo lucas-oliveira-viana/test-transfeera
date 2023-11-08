@@ -1,0 +1,76 @@
+@import "@shared/styles/tokens.scss";
+@import "@shared/styles/font.scss";
+
+.content {
+  padding: 75px 235px;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 300;
+  color: $gray-5;
+  margin-bottom: 50px;
+}
+
+.wrapper {
+  &_data {
+    display: grid;
+    grid-template-columns: 50% 30%;
+    column-gap: 30px;
+    row-gap: 30px;
+    margin-bottom: 40px;
+  }
+
+  &_pix {
+    display: grid;
+    grid-template-columns: 50%;
+    column-gap: 30px;
+    row-gap: 30px;
+    margin-bottom: 40px;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+
+.label {
+  white-space: nowrap;
+  margin-bottom: 8px;
+  color: $text;
+  font-weight: 300;
+}
+
+.input_select {
+  color: $text;
+  padding: 5px 10px;
+  font-size: 0.875rem;
+  border-radius: 4px;
+  font-family: $default-font-family;
+  font-weight: bold;
+  line-height: 1.5rem;
+  border: none;
+  padding: 9px 10px;
+  border-right: 4px solid transparent;
+  outline: 2px solid #eee;
+  cursor: pointer;
+}
+
+.actions_wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancel {
+  color: $cyan-3;
+  border-color: $cyan-3;
+  background-color: $white;
+}
+
+.save {
+  background-color: #289aef;
+  border-color: #289aef;
+  color: $white;
+}

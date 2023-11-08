@@ -1,0 +1,13 @@
+@import "@shared/styles/tokens.scss";
+@import "@shared/styles/font.scss";
+
+.base {
+  color: $text;
+  padding: 5px 10px;
+  font-size: 0.875rem;
+  border-radius: 4px;
+  font-family: $default-font-family;
+  font-weight: bold;
+  line-height: 1.5rem;
+  border: 2px solid #eee;
+}

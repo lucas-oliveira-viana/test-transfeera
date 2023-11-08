@@ -1,5 +1,7 @@
+@import "@shared/styles/tokens.scss";
+
 .subheader {
-  padding-left: 50px;
+  padding-left: $page-padding-size;
   height: 120px;
   background-color: #eceff1;
   display: flex;
@@ -7,7 +9,7 @@
   gap: 10px;
 
   &_text {
-    color: #757575;
+    color: $text;
     font-size: 28px;
     font-weight: 300;
   }
@@ -22,6 +24,7 @@
     }
   }
 }
+
 .content {
-  padding: 50px;
+  padding: $page-padding-size;
 }

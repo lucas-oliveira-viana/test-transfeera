@@ -1,4 +1,4 @@
-export function identifyCnpjOrCpf(input: string) {
+export function identifyCNPJOrCPF(input: string) {
   const cleanedInput = input.replace(/\D/g, "");
 
   if (cleanedInput.length === 11) {
@@ -16,7 +16,7 @@ export function formatCPF(input: string): string {
   const cleanedCPF = input.replace(/\D/g, "");
 
   if (cleanedCPF.length !== 11) {
-    return input
+    return input;
   }
 
   return cleanedCPF.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
@@ -33,4 +33,18 @@ export function formatCNPJ(input: string) {
     /(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/,
     "$1.$2.$3.$4/$5"
   );
+}
+
+export function dinamicallyFormatCPFOrCNPJ(input: string) {
+  const type = identifyCNPJOrCPF(input);
+
+  if (type === "CPF") {
+    return formatCPF(input);
+  }
+
+  if (type === "CNPJ") {
+    return formatCNPJ(input);
+  }
+
+  return input;
 }

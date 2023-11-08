@@ -11,5 +11,28 @@ export default {
       account: "Conta",
       status: "Status do favorecido",
     },
+    createReceiver: {
+      dataTitle: "Quais os dados do favorecido?",
+      dataForm: {
+        name: "Qual o nome completo ou  razão social do favorecido?",
+        document: "Qual o CPF ou CNPJ?",
+        email: "Qual o e-mail para o envio do comprovante?",
+      },
+      pixTitle: "Qual a chave pix?",
+      pixForm: {
+        type: "Tipo da chave",
+        key: "Chave",
+      },
+      pixKeyTypes: {
+        email: "E-mail",
+        cpf: "CPF",
+        cnpj: "CNPJ",
+        random: "Aleatória",
+      },
+      actions: {
+        cancel: "Cancelar",
+        save: "Salvar",
+      },
+    },
   },
 };

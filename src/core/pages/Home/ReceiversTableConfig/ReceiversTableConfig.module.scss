@@ -6,6 +6,7 @@
 
 .td {
   padding: 10px 10px 10px 0;
+  color: $gray-5;
 }
 
 .th {
@@ -33,4 +34,8 @@
 
 .validated {
   background-color: #3092e3;
+}
+
+.bank_logo {
+  width: 1.75rem;
 }

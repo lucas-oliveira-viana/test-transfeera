@@ -1,23 +1,23 @@
-import { formatCNPJ, formatCPF, identifyCnpjOrCpf } from "./helpers";
+import { formatCNPJ, formatCPF, identifyCNPJOrCPF } from "./helpers";
 
 describe("test identifyCnpjOrCpf function", () => {
   it("should identify a valid CPF", () => {
-    const result = identifyCnpjOrCpf("123.456.789-09");
+    const result = identifyCNPJOrCPF("123.456.789-09");
     expect(result).toBe("CPF");
   });
 
   it("should identify a valid CNPJ", () => {
-    const result = identifyCnpjOrCpf("12.345.678.0001/90");
+    const result = identifyCNPJOrCPF("12.345.678.0001/90");
     expect(result).toBe("CNPJ");
   });
 
   it("should return same input for an invalid input", () => {
-    const result = identifyCnpjOrCpf("12345");
+    const result = identifyCNPJOrCPF("12345");
     expect(result).toBe("12345");
   });
 
   it("should return same input for an empty input", () => {
-    const result = identifyCnpjOrCpf("");
+    const result = identifyCNPJOrCPF("");
     expect(result).toBe("");
   });
 });
