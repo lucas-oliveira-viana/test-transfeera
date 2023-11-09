@@ -1,0 +1,22 @@
+@import "@shared/styles/tokens.scss";
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.button {
+  color: $blue-4;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+
+  &:hover {
+    font-weight: bold;
+  }
+}
+
+.current_page {
+    font-weight: bold;
+}

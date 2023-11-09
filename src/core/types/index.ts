@@ -77,3 +77,10 @@ export type TToast = {
   isOpen: boolean;
   content: ReactNode | null;
 };
+
+export type TPagination<T> = {
+  currentPage: number;
+  pageSize: number;
+  totalPages: number;
+  paginatedData?: T[][];
+};

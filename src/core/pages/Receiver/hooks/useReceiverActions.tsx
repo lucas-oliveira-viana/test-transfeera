@@ -6,19 +6,25 @@ import {
   setSource as setReceiversSourceResponse,
   setToEdit as setReceiversFormData,
 } from "@core/redux/receiver/Receiver.store";
+import { setContent as setDialogContent } from "@core/redux/dialog/Dialog.store";
 import { setIsOpen as setIsDialogOpen } from "@core/redux/dialog/Dialog.store";
+import { setToEdit as setReceiverToEdit } from "@core/redux/receiver/Receiver.store";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import useNotifier from "@core/hooks/useNotification";
 import receiversService from "@core/services/receivers";
+import useReceiverDialog from "./useReceiverDialog";
 
 export default function useReceiverActions(
   isEdit: boolean,
   formData: TReceiverFormData
 ) {
-  const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { notifySuccess } = useNotifier();
+  const { t } = useTranslation();
+  const { notifySuccess, notifyError } = useNotifier();
+  const { openConfirmReceiverRemoveDialog, openReceiverDialog } =
+    useReceiverDialog();
+
   const [isLoading, setIsLoading] = useState(false);
 
   function refreshHome() {
@@ -70,7 +76,7 @@ export default function useReceiverActions(
         refreshHome();
       })
       .catch(() => {
-        // TODO abrir popup de erro
+        notifyError({ children: t("notifications.genericError") });
       })
       .finally(() => {
         setIsLoading(false);
@@ -108,7 +114,7 @@ export default function useReceiverActions(
         refreshHome();
       })
       .catch(() => {
-        // TODO abrir popup de erro
+        notifyError({ children: t("notifications.genericError") });
       })
       .finally(() => {
         setIsLoading(false);
@@ -118,25 +124,15 @@ export default function useReceiverActions(
   }
 
   function handleRemove() {
-    const { id } = formData;
-
-    setIsLoading(true);
-
-    receiversService
-      .removeById(id)
-      .then(() => {
-        dispatch(setReceiversFormData(null));
-        dispatch(setIsDialogOpen(false));
-
-        refreshHome();
-      })
-      .catch(() => {
-        // TODO abrir popup de erro
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    openConfirmReceiverRemoveDialog();
   }
 
-  return { isLoading, handleCancel, handleSave, handleEdit, handleRemove };
+  return {
+    isLoading,
+    handleCancel,
+    handleSave,
+    handleEdit,
+    handleRemove,
+    openReceiverDialog,
+  };
 }

@@ -1,13 +1,9 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { TReceiverSource, TTableConfig } from "@core/types";
-import receiversTableConfigStyle from "./ReceiversTableConfig.module.scss";
+import receiversTableConfigStyle from "../styles/ReceiversTableConfig.module.scss";
 import { formatCNPJ, formatCPF, identifyCNPJOrCPF } from "@core/helpers";
-import LogoBancoDoBrasil from "@shared/assets/svg/logo-bancos/banco-brasil.svg";
-import LogoItau from "@shared/assets/svg/logo-bancos/itau.svg";
-import LogoNubank from "@shared/assets/svg/logo-bancos/nubank.svg";
-import LogoSantander from "@shared/assets/svg/logo-bancos/santander.svg";
 import LogoOtherBank from "@shared/assets/svg/logo-bancos/other.svg";
-import { BANK_CODE, BANK_DICTIONARY } from "@core/constants";
+import { BANK_DICTIONARY } from "@core/constants";
 import {
   ReceiverStatusTagDraft,
   ReceiverStatusTagValidated,

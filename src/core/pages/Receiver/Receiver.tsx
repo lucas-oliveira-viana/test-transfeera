@@ -1,6 +1,6 @@
 import React from "react";
-import defaultStyle from "./Receiver.module.scss";
-import editStyle from "./ReceiverEdit.module.scss";
+import defaultStyle from "./styles/Receiver.module.scss";
+import editStyle from "./styles/ReceiverEdit.module.scss";
 import { useTranslation } from "react-i18next";
 import Button from "@shared/components/Button/Button";
 import { TReceiverFormData, TReceiverToEdit } from "@core/types";

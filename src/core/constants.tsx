@@ -3,6 +3,7 @@ import LogoBancoDoBrasil from "@shared/assets/svg/logo-bancos/banco-brasil.svg";
 import LogoItau from "@shared/assets/svg/logo-bancos/itau.svg";
 import LogoNubank from "@shared/assets/svg/logo-bancos/nubank.svg";
 import LogoSantander from "@shared/assets/svg/logo-bancos/santander.svg";
+import { TPagination, TReceiverSource } from "./types";
 
 export const BANK_CODE = {
   SANTANDER: "033",
@@ -28,4 +29,10 @@ export const BANK_DICTIONARY = {
     label: "Nubank",
     icon: <LogoNubank fill="#8303D2" />,
   },
+};
+
+export const INITIAL_PAGINATION_CONFIG: TPagination<TReceiverSource> = {
+  currentPage: 0,
+  pageSize: 8,
+  totalPages: 0,
 };

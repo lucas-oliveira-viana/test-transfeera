@@ -46,7 +46,7 @@ export default {
       bank: "Banco",
       branch: "Agência",
       accountType: "Tipo de conta",
-      email: "E-mail do favorecido"
+      email: "E-mail do favorecido",
     },
     table: {
       empty: "Nenhum registro encontrado",
@@ -56,6 +56,17 @@ export default {
       saveReceiversSuccess: "Favorecido salvo com sucesso",
       updateReceiversSuccess: "Favorecido alterado com sucesso",
       errorTryingToRemoveReceivers: "Erro ao remover favorecidos",
+      genericError: "Erro ao executar operação",
+    },
+    confirmRemoveReceiver: {
+      title: "Excluir favorecido",
+      askConfirm: "Você confirma a exclusão do favorecido {{name}}?",
+      description:
+        "O Histórico de pagamentos para este favorecido será mantido, mas ele será removido da sua lista de favorecidos.",
+      actions: {
+        cancel: "Cancelar",
+        confirm: "Confirmar exclusão"
+      }
     },
   },
 };
