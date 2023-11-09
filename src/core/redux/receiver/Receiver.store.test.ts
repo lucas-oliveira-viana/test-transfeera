@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import receiverReducer, { set } from "./Receiver.store";
+import receiverReducer, { setApiResponse } from "./Receiver.store";
 import { RootState } from "../store";
-import { TPixKey, TStatus } from "@core/types";
+import { TPixType, TStatus } from "@core/types";
 
 describe("Redux Store Test", () => {
   let store: ReturnType<typeof configureStore>;
@@ -15,7 +15,7 @@ describe("Redux Store Test", () => {
   });
 
   beforeEach(() => {
-    store.dispatch(set([]));
+    store.dispatch(setApiResponse(null));
   });
 
   it("should set the receiver data in the store", () => {
@@ -31,14 +31,14 @@ describe("Redux Store Test", () => {
         bank_name: "Banco de Exemplo",
         bank_code: "E123",
         pix_key: "joao.silva@banco",
-        pix_key_type: "cpf" as TPixKey,
+        pix_key_type: "cpf" as TPixType,
         status: "validado" as TStatus,
         created_at: "2023-11-07T12:00:00Z",
         updated_at: "2023-11-07T14:30:00Z",
       },
     ];
 
-    store.dispatch(set(data));
+    store.dispatch(setApiResponse(data));
 
     const state = store.getState();
 
@@ -48,6 +48,6 @@ describe("Redux Store Test", () => {
   it("should handle initial state", () => {
     const initialState = store.getState();
 
-    expect((initialState as RootState).receivers).toEqual([]);
+    expect((initialState as RootState).receivers).toEqual(null);
   });
 });

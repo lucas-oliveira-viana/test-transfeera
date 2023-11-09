@@ -3,6 +3,9 @@ export default {
     tabs: {
       yourReceivers: "Seus favorecidos",
     },
+    home: {
+      removeSelected: "Excluir selecionados"
+    },
     receiver: {
       name: "Favorecido",
       taxId: "CPF / CNPJ",
@@ -33,6 +36,9 @@ export default {
         cancel: "Cancelar",
         save: "Salvar",
       },
+    },
+    table: {
+      empty: "Nenhum registro encontrado",
     },
   },
 };

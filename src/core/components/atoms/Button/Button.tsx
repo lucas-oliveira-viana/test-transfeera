@@ -11,7 +11,7 @@ type Props = ReactHTMLButtonProps & {
 
 export default function Button({ children, ...props }: Props) {
   return (
-    <button {...props} className={`${styles.base} ${props.className}`}>
+    <button {...props} className={`${props.className} ${styles.base}`}>
       {children}
     </button>
   );

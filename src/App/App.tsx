@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Home from "@core/pages/Home/Home";
 import Tabs from "@core/components/atoms/Tabs/Tabs";
 import Header from "@core/components/atoms/Header/Header";
 import { PageEnum } from "@core/enum";
 import { useSelector } from "react-redux";
 import { RootState } from "@core/redux/store";
-import Create from "@core/pages/Create/Create";
+import Receiver from "@core/pages/Receiver/Receiver";
+import Dialog from "@core/components/atoms/Dialog/Dialog";
 
 export default function App() {
   const page = useSelector<RootState, PageEnum>((state) => state.page);
@@ -13,7 +14,8 @@ export default function App() {
   function renderPage() {
     const pages = {
       [PageEnum.HOME]: <Home />,
-      [PageEnum.CREATE]: <Create />,
+      [PageEnum.RECEIVER]: <Receiver />,
+      [PageEnum.EMPTY]: <></>,
     };
 
     return pages[page] || <Home />;
@@ -21,6 +23,7 @@ export default function App() {
 
   return (
     <>
+      <Dialog />
       <Header />
       <Tabs isCloseable={page !== PageEnum.HOME} />
       <main>{renderPage()}</main>

@@ -1,4 +1,5 @@
 export enum PageEnum {
   HOME = "HOME",
-  CREATE = "CREATE",
+  RECEIVER = "RECEIVER",
+  EMPTY = "EMPTY",
 }

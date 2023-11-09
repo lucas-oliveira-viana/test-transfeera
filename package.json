@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "json-server api.json --routes routes.json --port 3001",
+    "server": "json-server api.json --routes routes.json --port 3001 --delay 1500",
     "start": "webpack-dev-server --open --mode development --hot",
     "build": "webpack --mode production",
     "test": "jest"

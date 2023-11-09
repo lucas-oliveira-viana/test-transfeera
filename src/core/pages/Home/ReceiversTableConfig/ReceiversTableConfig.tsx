@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import i18next from "i18next";
-import { TReceiver, TTableConfig } from "@core/types";
+import { TReceiverApi, TTableConfig } from "@core/types";
 import receiversTableStyle from "./ReceiversTableConfig.module.scss";
 import { formatCNPJ, formatCPF, identifyCNPJOrCPF } from "@core/helpers";
 import LogoBancoDoBrasil from "@shared/assets/svg/logo-bancos/banco-brasil.svg";
@@ -10,7 +10,7 @@ import LogoSantander from "@shared/assets/svg/logo-bancos/santander.svg";
 import LogoOtherBank from "@shared/assets/svg/logo-bancos/other.svg";
 import { BANK_CODE } from "@core/constants";
 
-let receiversTableConfig: TTableConfig<TReceiver>;
+let receiversTableConfig: TTableConfig<TReceiverApi>;
 
 function fillConfig() {
   receiversTableConfig = {

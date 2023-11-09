@@ -35,7 +35,7 @@ export function formatCNPJ(input: string) {
   );
 }
 
-export function dinamicallyFormatCPFOrCNPJ(input: string) {
+export function dinamicallyIdentifyAndFormat(input: string) {
   const type = identifyCNPJOrCPF(input);
 
   if (type === "CPF") {
