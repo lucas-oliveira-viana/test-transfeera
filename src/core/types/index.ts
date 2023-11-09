@@ -34,6 +34,15 @@ export type TReceiver = {
   formData: TReceiverFormData;
 };
 
+export type TReceiverFormField = {
+  label: string;
+  hide?: boolean;
+  disabled?: boolean;
+  mask?: (value: string) => string;
+  type?: string;
+  options?: Array<{ label: string; value: string }>;
+};
+
 export type TColumnConfig<T> = {
   label: string;
   key: keyof T;

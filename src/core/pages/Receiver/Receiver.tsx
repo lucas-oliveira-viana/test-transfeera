@@ -2,7 +2,6 @@ import React from "react";
 import defaultStyle from "./Receiver.module.scss";
 import editStyle from "./ReceiverEdit.module.scss";
 import { useTranslation } from "react-i18next";
-import Input from "@shared/components/Input/Input";
 import Button from "@shared/components/Button/Button";
 import { TReceiverFormData } from "@core/types";
 import { useSelector } from "react-redux";
@@ -10,16 +9,7 @@ import Spinner from "@shared/components/Spinner/Spinner";
 import { RootState } from "@core/redux/store";
 import useReceiverForm from "./hooks/useReceiverForm";
 import useReceiverActions from "./hooks/useReceiverActions";
-
-type Field = {
-  label: string;
-  hide?: boolean;
-  disabled?: boolean;
-  mask?: (value: string) => string;
-  type?: string;
-  options?: Array<{ label: string; value: string }>;
-};
-
+import Field from "./Field/Field";
 export default function Receiver() {
   const { t } = useTranslation();
   const receivers = useSelector<RootState, TReceiverFormData | null>(
@@ -39,56 +29,14 @@ export default function Receiver() {
     formData
   );
 
-  function renderField(field: Field, key: keyof TReceiverFormData) {
-    return (
-      <div key={field.label} className={styles.field}>
-        {field.type === "select" ? (
-          <>
-            <label className={styles.label}>{field.label}</label>
-            <select
-              className={`${styles.input} ${styles.input_select}`}
-              id={key}
-              name={key}
-              defaultValue={formData[key]}
-              onChange={(e) => {
-                setFormData((currFormData) => ({
-                  ...currFormData,
-                  [key]: e.target.value,
-                }));
-              }}
-            >
-              {field.options &&
-                field.options.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-            </select>
-          </>
-        ) : (
-          <>
-            {!field.hide && (
-              <>
-                <label className={styles.label}>{field.label}</label>
-                <Input
-                  type="text"
-                  id={key}
-                  name={key}
-                  mask={field.mask}
-                  value={formData[key]}
-                  onChange={(e) => {
-                    setFormData((currFormData) => ({
-                      ...currFormData,
-                      [key]: e.target.value,
-                    }));
-                  }}
-                />
-              </>
-            )}
-          </>
-        )}
-      </div>
-    );
+  function handleChangeFieldValue(
+    e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>,
+    key: keyof TReceiverFormData
+  ) {
+    setFormData((currFormData) => ({
+      ...currFormData,
+      [key]: e.target.value,
+    }));
   }
 
   const dataConfig = Object.entries(formConfig.data);
@@ -106,15 +54,25 @@ export default function Receiver() {
       )}
       <h1 className={styles.title}>{t("createReceiver.dataTitle")}</h1>
       <div className={`${styles.wrapper} ${styles.wrapper_data}`}>
-        {dataConfig.map(([key, field]) =>
-          renderField(field, key as keyof TReceiverFormData)
-        )}
+        {dataConfig.map(([key, field]) => (
+          <Field
+            field={field}
+            formData={formData}
+            fieldKey={key as keyof TReceiverFormData}
+            handleChangeFieldValue={handleChangeFieldValue}
+          />
+        ))}
       </div>
       <h1 className={styles.title}>{t("createReceiver.pixTitle")}</h1>
       <div className={`${styles.wrapper} ${styles.wrapper_pix}`}>
-        {pixConfig.map(([key, field]) =>
-          renderField(field, key as keyof TReceiverFormData)
-        )}
+        {pixConfig.map(([key, field]) => (
+          <Field
+            field={field}
+            formData={formData}
+            fieldKey={key as keyof TReceiverFormData}
+            handleChangeFieldValue={handleChangeFieldValue}
+          />
+        ))}
       </div>
       <div className={styles.actions_wrapper}>
         <Button
