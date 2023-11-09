@@ -2,14 +2,14 @@ import React from "react";
 import defaultStyle from "./Receiver.module.scss";
 import editStyle from "./ReceiverEdit.module.scss";
 import { useTranslation } from "react-i18next";
-import Input from "@core/components/atoms/Input/Input";
-import Button from "@core/components/atoms/Button/Button";
+import Input from "@shared/components/Input/Input";
+import Button from "@shared/components/Button/Button";
 import { TReceiverFormData } from "@core/types";
 import { useSelector } from "react-redux";
-import Spinner from "@core/components/atoms/Spinner/Spinner";
+import Spinner from "@shared/components/Spinner/Spinner";
 import { RootState } from "@core/redux/store";
-import useReceiverForm from "@core/hooks/useReceiverForm";
-import useReceiverActions from "@core/hooks/useReceiverActions";
+import useReceiverForm from "./hooks/useReceiverForm";
+import useReceiverActions from "./hooks/useReceiverActions";
 
 type Field = {
   label: string;
@@ -26,6 +26,7 @@ export default function Receiver() {
     (state) => state.receivers.formData
   );
   const styles = receivers ? editStyle : defaultStyle;
+  const isEdit = !!receivers;
 
   const {
     data: formData,
@@ -34,7 +35,7 @@ export default function Receiver() {
   } = useReceiverForm(receivers);
 
   const { isLoading, handleCancel, handleSave } = useReceiverActions(
-    !!receivers,
+    isEdit,
     formData
   );
 
@@ -95,6 +96,14 @@ export default function Receiver() {
 
   return (
     <section className={styles.content}>
+      {isEdit && (
+        <div className={styles.header}>
+          <h1>{receivers.name}</h1>
+          {
+            // receivers.
+          }
+        </div>
+      )}
       <h1 className={styles.title}>{t("createReceiver.dataTitle")}</h1>
       <div className={`${styles.wrapper} ${styles.wrapper_data}`}>
         {dataConfig.map(([key, field]) =>

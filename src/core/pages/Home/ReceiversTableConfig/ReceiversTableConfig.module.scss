@@ -1,24 +1,37 @@
 @import "@shared/styles/tokens.scss";
 
 .table {
-  width: 100%;
   border: none;
   border-collapse: collapse;
+  font-size: 1rem;
+  width: 100%;
 }
 
 .td {
   padding: 10px 10px 10px 0;
   color: $gray-5;
+
+  &:last-child {
+    width: 1%;
+    white-space: nowrap;
+    padding: 10px 0px 10px 0;
+  }
 }
 
 .th {
   font-weight: 700;
   color: $gray-4;
   text-align: left;
+  padding: 10px 0;
 }
 
 .tr {
   font-weight: 300;
+
+  &[aria-disabled="true"] {
+    pointer-events: none;
+    opacity: 0.6;
+  }
 
   &:hover {
     cursor: pointer;
@@ -26,28 +39,44 @@
   }
 }
 
-.draft,
-.validated {
-  color: $white;
-  padding: 7px 66px;
-  font-size: 0.875rem;
-  border-radius: 100px;
-  width: fit-content;
-}
-
-.draft {
-  background-color: $gray-4;
-}
-
-.validated {
-  background-color: #3092e3;
-}
-
 .bank_logo {
   width: 1.75rem;
 }
 
 .check_wrapper {
-  display: flex;
+  display: inline-flex;
   gap: 5px;
+}
+
+.checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  background-color: white;
+  border-radius: 4px;
+  vertical-align: middle;
+  border: 2px solid $gray-4;
+  cursor: pointer;
+  width: 1rem;
+  height: 1rem;
+  display: grid;
+  place-content: center;
+
+  &::before {
+    content: "";
+    width: 0.65rem;
+    height: 0.65rem;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1rem 1rem $cyan-4;
+    border-radius: 1px;
+  }
+
+  &:checked::before {
+    transform: scale(1);
+  }
+}
+
+.text {
+  margin-top: -1px;
 }

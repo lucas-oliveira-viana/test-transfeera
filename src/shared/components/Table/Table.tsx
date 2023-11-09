@@ -7,6 +7,7 @@ type Props<T> = {
   data: Array<T> | null;
   onRowClick?: (data: T) => any;
   onCheck?: (data: T[]) => any;
+  disabledRows?: T[];
 };
 
 export default function Table<T>({
@@ -14,6 +15,7 @@ export default function Table<T>({
   data,
   onRowClick,
   onCheck,
+  disabledRows,
 }: Props<T>) {
   const { t } = useTranslation();
 
@@ -38,15 +40,16 @@ export default function Table<T>({
               {onCheck && index === 0 ? (
                 <div className={style.check_wrapper}>
                   <input
+                    className={style.checkbox}
                     type="checkbox"
                     onChange={(e) => {
                       e.target.checked ? setChecked(data) : setChecked([]);
                     }}
                   />
-                  <label>{column.label}</label>
+                  <span className={style.text}>{column.label}</span>
                 </div>
               ) : (
-                column.label
+                <span className={style.text}>{column.label}</span>
               )}
             </th>
           ))}
@@ -55,10 +58,13 @@ export default function Table<T>({
       <tbody>
         {data.map((item, index) => (
           <tr
+            aria-disabled={
+              !!disabledRows.find((itemToDisable) => itemToDisable === item)
+            }
             className={style.tr}
             key={index}
             onClick={(e) => {
-              if (e.target !== e.currentTarget) {
+              if ((e.target as HTMLElement).tagName === "INPUT") {
                 return;
               }
 
@@ -75,6 +81,7 @@ export default function Table<T>({
                   {onCheck && colIndex === 0 ? (
                     <div className={style.check_wrapper}>
                       <input
+                        className={style.checkbox}
                         type="checkbox"
                         checked={checked.some(
                           (checkedItem) => checkedItem === item
@@ -92,10 +99,10 @@ export default function Table<T>({
                               );
                         }}
                       />
-                      <div>{content}</div>
+                      <span className={style.text}>{content}</span>
                     </div>
                   ) : (
-                    content
+                    <span className={style.text}>{content}</span>
                   )}
                 </td>
               );

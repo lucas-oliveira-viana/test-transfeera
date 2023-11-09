@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import i18next from "i18next";
-import { TReceiverApi, TTableConfig } from "@core/types";
+import { TReceiverSource, TTableConfig } from "@core/types";
 import receiversTableStyle from "./ReceiversTableConfig.module.scss";
 import { formatCNPJ, formatCPF, identifyCNPJOrCPF } from "@core/helpers";
 import LogoBancoDoBrasil from "@shared/assets/svg/logo-bancos/banco-brasil.svg";
@@ -9,8 +9,12 @@ import LogoNubank from "@shared/assets/svg/logo-bancos/nubank.svg";
 import LogoSantander from "@shared/assets/svg/logo-bancos/santander.svg";
 import LogoOtherBank from "@shared/assets/svg/logo-bancos/other.svg";
 import { BANK_CODE } from "@core/constants";
+import {
+  ReceiverStatusTagDraft,
+  ReceiverStatusTagValidated,
+} from "@core/components/ReceiverStatusTags/ReceiverStatusTags";
 
-let receiversTableConfig: TTableConfig<TReceiverApi>;
+let receiversTableConfig: TTableConfig<TReceiverSource>;
 
 function fillConfig() {
   receiversTableConfig = {
@@ -79,13 +83,9 @@ function fillConfig() {
         key: "status",
         render: (data) => {
           return data.status === "rascunho" ? (
-            <div key={data.id} className={receiversTableStyle.draft}>
-              Rascunho
-            </div>
+            <ReceiverStatusTagDraft />
           ) : (
-            <div key={data.id} className={receiversTableStyle.validated}>
-              Validado
-            </div>
+            <ReceiverStatusTagValidated />
           );
         },
       },

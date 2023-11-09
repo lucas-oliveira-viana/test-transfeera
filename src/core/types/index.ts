@@ -12,17 +12,17 @@ export type TReceiverFormData = {
   pixKey: string;
 };
 
-export type TReceiverApi = {
+export type TReceiverSource = {
   id: string;
   name: string;
   email: string;
   tax_id: string;
-  branch: string;
-  account: string;
-  account_type: string;
-  bank_name: string;
-  bank_code: string;
-  pix_key: string;
+  branch: string | null;
+  account: string | null;
+  account_type: string | null;
+  bank_name: string | null;
+  bank_code: string | null;
+  pix_key: string | null;
   pix_key_type: TPixType;
   status: TStatus;
   created_at: string;
@@ -30,7 +30,7 @@ export type TReceiverApi = {
 };
 
 export type TReceiver = {
-  apiResponse: TReceiverApi[];
+  apiResponse: TReceiverSource[];
   formData: TReceiverFormData;
 };
 
@@ -46,6 +46,11 @@ export type TTableConfig<T> = {
 };
 
 export type TDialog = {
+  isOpen: boolean;
+  content: ReactNode | null;
+};
+
+export type TToast = {
   isOpen: boolean;
   content: ReactNode | null;
 };

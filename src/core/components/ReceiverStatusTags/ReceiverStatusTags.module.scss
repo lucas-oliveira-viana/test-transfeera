@@ -1,0 +1,19 @@
+@import "@shared/styles/tokens.scss";
+
+.draft,
+.validated {
+  color: $white;
+  padding: 7px 66px;
+  font-size: 0.875rem;
+  border-radius: 100px;
+  width: 190px;
+  text-align: center;
+}
+
+.draft {
+  background-color: $gray-4;
+}
+
+.validated {
+  background-color: #3092e3;
+}

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TReceiverApi, TReceiverFormData } from "../../types";
+import { TReceiverSource, TReceiverFormData } from "../../types";
 
 const receiver = createSlice({
   name: "receivers",
@@ -8,7 +8,7 @@ const receiver = createSlice({
     apiResponse: null,
   },
   reducers: {
-    setApiResponse(state, action: PayloadAction<TReceiverApi[] | null>) {
+    setSourceResponse(state, action: PayloadAction<TReceiverSource[] | null>) {
       return { formData: state?.formData, apiResponse: action.payload };
     },
     setFormData(state, action: PayloadAction<TReceiverFormData | null>) {
@@ -17,5 +17,5 @@ const receiver = createSlice({
   },
 });
 
-export const { setApiResponse, setFormData } = receiver.actions;
+export const { setSourceResponse, setFormData } = receiver.actions;
 export default receiver.reducer;

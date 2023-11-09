@@ -1,0 +1,37 @@
+@import "@shared/styles/tokens.scss";
+
+.notification {
+  padding: 17px 21px;
+  border-radius: 4px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      opacity: .6;
+    }
+  }
+}
+
+.error {
+  background-color: $red-3;
+  color: $white;
+}
+
+.success {
+  background-color: $blue-3;
+  color: $white;
+
+  svg {
+    opacity: 0.9;
+  }
+}

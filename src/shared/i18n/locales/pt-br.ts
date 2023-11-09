@@ -4,7 +4,7 @@ export default {
       yourReceivers: "Seus favorecidos",
     },
     home: {
-      removeSelected: "Excluir selecionados"
+      removeSelected: "Excluir selecionados",
     },
     receiver: {
       name: "Favorecido",
@@ -13,6 +13,10 @@ export default {
       branch: "Agência",
       account: "Conta",
       status: "Status do favorecido",
+      statusTypes: {
+        draft: "Rascunho",
+        validated: "Validado",
+      },
     },
     createReceiver: {
       dataTitle: "Quais os dados do favorecido?",
@@ -39,6 +43,11 @@ export default {
     },
     table: {
       empty: "Nenhum registro encontrado",
+    },
+    notifications: {
+      errorTryingToGetReceivers: "Erro ao buscar favorecidos",
+      saveReceiversSuccess: "Favorecido salvo com sucesso",
+      updateReceiversSuccess: "Favorecido alterado com sucesso",
     },
   },
 };

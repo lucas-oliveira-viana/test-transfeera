@@ -1,24 +1,28 @@
 import { useState } from "react";
 import { PageEnum } from "@core/enum";
-import { TPixType, TReceiverApi, TReceiverFormData } from "@core/types";
+import { TPixType, TReceiverSource, TReceiverFormData } from "@core/types";
 import { set as setPage } from "@core/redux/page/Page.store";
 import {
-  setApiResponse as setReceiversApiResponse,
+  setSourceResponse as setReceiversSourceResponse,
   setFormData as setReceiversFormData,
 } from "@core/redux/receiver/Receiver.store";
 import { setIsOpen as setIsDialogOpen } from "@core/redux/dialog/Dialog.store";
 import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
+import useNotifier from "@core/hooks/useNotification";
 import receiversService from "@core/services/receivers";
 
 export default function useReceiverActions(
   isEdit: boolean,
   formData: TReceiverFormData
 ) {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
+  const { notifySuccess } = useNotifier();
   const [isLoading, setIsLoading] = useState(false);
 
   function refreshHome() {
-    dispatch(setReceiversApiResponse(null));
+    dispatch(setReceiversSourceResponse(null));
     dispatch(setPage(PageEnum.EMPTY));
     setTimeout(() => {
       dispatch(setPage(PageEnum.HOME));
@@ -39,7 +43,7 @@ export default function useReceiverActions(
   function handleSave() {
     const { id, name, document, email, pixType, pixKey } = formData;
 
-    const payload: TReceiverApi = {
+    const payload: TReceiverSource = {
       id: id,
       name: name,
       email: email,
@@ -80,6 +84,7 @@ export default function useReceiverActions(
     receiversService
       .save(payload)
       .then(() => {
+        notifySuccess({ children: t("notifications.updateReceiversSuccess") });
         dispatch(setReceiversFormData(null));
         refreshHome();
       })

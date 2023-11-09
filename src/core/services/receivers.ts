@@ -1,16 +1,20 @@
-import { TReceiverApi } from "@core/types";
+import { TReceiverSource } from "@core/types";
 import api from "./base";
 
 async function findAll() {
-  return api.get<TReceiverApi[]>("/receivers");
+  return api.get<TReceiverSource[]>("/receivers");
 }
 
-async function save(receiver: TReceiverApi) {
-  return api.post<TReceiverApi>("/receivers", receiver);
+async function save(receiver: TReceiverSource) {
+  return api.post<TReceiverSource>("/receivers", receiver);
 }
 
-async function update(receiver: TReceiverApi) {
+async function update(receiver: TReceiverSource) {
   return api.put(`/receivers/${receiver.id}`, receiver);
 }
 
-export default { findAll, save, update };
+async function removeById(id: string) {
+  return api.delete(`/receivers/${id}`);
+}
+
+export default { findAll, save, update, removeById };
