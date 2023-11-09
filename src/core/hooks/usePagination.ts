@@ -1,8 +1,17 @@
 import { TPagination } from "@core/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function usePagination<T>(initialState: TPagination<T>) {
+export default function usePagination<T>(
+  initialState: TPagination<T>,
+  data: T[]
+) {
   const [state, setState] = useState<TPagination<T>>(initialState);
+
+  useEffect(() => {
+    if (data) {
+      setPaginationData(data);
+    }
+  }, [data]);
 
   function setPaginationData(data: T[]) {
     const chunkedArray: T[][] = [];
@@ -24,5 +33,5 @@ export default function usePagination<T>(initialState: TPagination<T>) {
     }));
   }
 
-  return { pagination: state, setPaginationData, setCurrentPage };
+  return { pagination: state, setCurrentPage };
 }

@@ -35,14 +35,8 @@ export default function Home() {
     handleRemoveReceivers,
   } = useReceiversActions();
 
-  const { pagination, setPaginationData, setCurrentPage } =
-    usePagination<TReceiverSource>(INITIAL_PAGINATION_CONFIG);
-
-  useEffect(() => {
-    if (receivers) {
-      setPaginationData(receivers);
-    }
-  }, [receivers]);
+  const { pagination, setCurrentPage } =
+    usePagination<TReceiverSource>(INITIAL_PAGINATION_CONFIG, receivers);
 
   return (
     <>
