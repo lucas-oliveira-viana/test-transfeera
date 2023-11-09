@@ -2,7 +2,7 @@
   "receivers": [
     {
       "id": "0accb825-db24-4288-9f29-c88b9ec656da",
-      "name": "Julia Silva2363",
+      "name": "Julia Silva2362",
       "email": "julia.silva@exemplo.com",
       "tax_id": "59738860000170",
       "branch": "",
@@ -355,22 +355,6 @@
       "updated_at": ""
     },
     {
-      "id": "jOQgcwq",
-      "name": "",
-      "email": "",
-      "tax_id": "",
-      "branch": "",
-      "account": "",
-      "account_type": "",
-      "bank_name": "",
-      "bank_code": "",
-      "pix_key": "",
-      "pix_key_type": "email",
-      "status": "rascunho",
-      "created_at": "",
-      "updated_at": ""
-    },
-    {
       "id": "8BwIKdA",
       "name": "",
       "email": "",
@@ -403,7 +387,7 @@
       "updated_at": ""
     },
     {
-      "id": "NRR2Jha",
+      "id": "VwU97ok",
       "name": "",
       "email": "",
       "tax_id": "",
@@ -419,7 +403,7 @@
       "updated_at": ""
     },
     {
-      "id": "1rhC45G",
+      "id": "dWxEx2C",
       "name": "",
       "email": "",
       "tax_id": "",

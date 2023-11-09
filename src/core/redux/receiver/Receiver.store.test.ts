@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import receiverReducer, { setSourceResponse } from "./Receiver.store";
+import receiverReducer, { setSource } from "./Receiver.store";
 import { RootState } from "../store";
 import { TPixType, TStatus } from "@core/types";
 
@@ -15,7 +15,7 @@ describe("Redux Store Test", () => {
   });
 
   beforeEach(() => {
-    store.dispatch(setSourceResponse(null));
+    store.dispatch(setSource(null));
   });
 
   it("should set the receiver data in the store", () => {
@@ -38,7 +38,7 @@ describe("Redux Store Test", () => {
       },
     ];
 
-    store.dispatch(setSourceResponse(data));
+    store.dispatch(setSource(data));
 
     const state = store.getState();
 

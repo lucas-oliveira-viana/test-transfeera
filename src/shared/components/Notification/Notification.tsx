@@ -18,7 +18,7 @@ export default function Notification(props: Props) {
     <div className={`${styles.notification} ${props.styles}`}>
       <span>{props.children}</span>
       <button onClick={props.onClose}>
-        <CloseIcon />
+        <CloseIcon fill="var(--white)" />
       </button>
     </div>
   );

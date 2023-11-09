@@ -1,31 +1,52 @@
 import { dinamicallyIdentifyAndFormat } from "@core/helpers";
-import { TPixType, TReceiverFormData } from "@core/types";
+import { TPixType, TReceiverFormData, TReceiverToEdit } from "@core/types";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const INITIAL_STATE_EMPTY = {
   id: "",
   name: "",
-  document: "",
+  taxId: "",
   email: "",
   pixType: "email" as TPixType,
   pixKey: "",
 };
 
-export default function useReceiverForm(initialState: TReceiverFormData) {
+export default function useReceiverForm(initialState: TReceiverToEdit) {
   const { t } = useTranslation();
 
-  const [data, setData] = useState<TReceiverFormData>(
-    initialState ? initialState : INITIAL_STATE_EMPTY
-  );
+  function getInitalState(): TReceiverFormData {
+    return initialState
+      ? {
+          id: initialState.id,
+          name: initialState.name,
+          taxId: initialState.taxId,
+          email: initialState.email,
+          pixType: initialState.pixType as TPixType,
+          pixKey: initialState.pixKey,
+        }
+      : INITIAL_STATE_EMPTY;
+  }
+
+  function handleChangeFieldValue(
+    e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>,
+    key: keyof TReceiverFormData
+  ) {
+    setData((currData) => ({
+      ...currData,
+      [key]: e.target.value,
+    }));
+  }
+
+  const [data, setData] = useState<TReceiverFormData>(getInitalState());
 
   const [config, setConfig] = useState({
     data: {
       name: {
         label: t("createReceiver.dataForm.name"),
       },
-      document: {
-        label: t("createReceiver.dataForm.document"),
+      taxId: {
+        label: t("createReceiver.dataForm.taxId"),
         mask: dinamicallyIdentifyAndFormat,
       },
       email: {
@@ -91,5 +112,5 @@ export default function useReceiverForm(initialState: TReceiverFormData) {
     hidePixKey(false);
   }, [data.pixType]);
 
-  return { data, setData, config };
+  return { data, config, handleChangeFieldValue };
 }

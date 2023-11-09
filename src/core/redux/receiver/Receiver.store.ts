@@ -1,21 +1,21 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TReceiverSource, TReceiverFormData } from "../../types";
+import { TReceiverSource, TReceiverToEdit } from "../../types";
 
 const receiver = createSlice({
   name: "receivers",
   initialState: {
-    formData: null,
-    apiResponse: null,
+    receiverToEdit: null,
+    source: null,
   },
   reducers: {
-    setSourceResponse(state, action: PayloadAction<TReceiverSource[] | null>) {
-      return { formData: state?.formData, apiResponse: action.payload };
+    setSource(state, action: PayloadAction<TReceiverSource[] | null>) {
+      return { receiverToEdit: state?.receiverToEdit, source: action.payload };
     },
-    setFormData(state, action: PayloadAction<TReceiverFormData | null>) {
-      return { apiResponse: state?.apiResponse, formData: action.payload };
+    setToEdit(state, action: PayloadAction<TReceiverToEdit | null>) {
+      return { source: state?.source, receiverToEdit: action.payload };
     },
   },
 });
 
-export const { setSourceResponse, setFormData } = receiver.actions;
+export const { setSource, setToEdit } = receiver.actions;
 export default receiver.reducer;

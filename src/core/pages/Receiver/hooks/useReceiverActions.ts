@@ -3,8 +3,8 @@ import { PageEnum } from "@core/enum";
 import { TPixType, TReceiverSource, TReceiverFormData } from "@core/types";
 import { set as setPage } from "@core/redux/page/Page.store";
 import {
-  setSourceResponse as setReceiversSourceResponse,
-  setFormData as setReceiversFormData,
+  setSource as setReceiversSourceResponse,
+  setToEdit as setReceiversFormData,
 } from "@core/redux/receiver/Receiver.store";
 import { setIsOpen as setIsDialogOpen } from "@core/redux/dialog/Dialog.store";
 import { useDispatch } from "react-redux";
@@ -41,13 +41,13 @@ export default function useReceiverActions(
   }
 
   function handleSave() {
-    const { id, name, document, email, pixType, pixKey } = formData;
+    const { id, name, taxId, email, pixType, pixKey } = formData;
 
     const payload: TReceiverSource = {
       id: id,
       name: name,
       email: email,
-      tax_id: document,
+      tax_id: taxId,
       branch: "",
       account: "",
       account_type: "",
@@ -61,25 +61,6 @@ export default function useReceiverActions(
     };
 
     setIsLoading(true);
-
-    if (isEdit) {
-      receiversService
-        .update(payload)
-        .then(() => {
-          dispatch(setReceiversFormData(null));
-          dispatch(setIsDialogOpen(false));
-
-          refreshHome();
-        })
-        .catch(() => {
-          // TODO abrir popup de erro
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-
-      return;
-    }
 
     receiversService
       .save(payload)
@@ -96,5 +77,66 @@ export default function useReceiverActions(
       });
   }
 
-  return { isLoading, handleCancel, handleSave };
+  function handleEdit() {
+    const { id, name, taxId, email, pixType, pixKey } = formData;
+
+    const payload: TReceiverSource = {
+      id: id,
+      name: name,
+      email: email,
+      tax_id: taxId,
+      branch: "",
+      account: "",
+      account_type: "",
+      bank_name: "",
+      bank_code: "",
+      pix_key: pixKey,
+      pix_key_type: pixType as TPixType,
+      status: "rascunho",
+      created_at: "",
+      updated_at: "",
+    };
+
+    setIsLoading(true);
+
+    receiversService
+      .update(payload)
+      .then(() => {
+        dispatch(setReceiversFormData(null));
+        dispatch(setIsDialogOpen(false));
+
+        refreshHome();
+      })
+      .catch(() => {
+        // TODO abrir popup de erro
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+
+    return;
+  }
+
+  function handleRemove() {
+    const { id } = formData;
+
+    setIsLoading(true);
+
+    receiversService
+      .removeById(id)
+      .then(() => {
+        dispatch(setReceiversFormData(null));
+        dispatch(setIsDialogOpen(false));
+
+        refreshHome();
+      })
+      .catch(() => {
+        // TODO abrir popup de erro
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }
+
+  return { isLoading, handleCancel, handleSave, handleEdit, handleRemove };
 }

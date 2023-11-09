@@ -22,7 +22,7 @@ export default function Tabs({ isCloseable }: Props) {
             dispatch(setPage(PageEnum.HOME));
           }}
         >
-          <CloseIcon />
+          <CloseIcon fill="var(--white)" />
         </button>
       ) : (
         <button className={`${styles.button} ${styles.button_tab}`}>

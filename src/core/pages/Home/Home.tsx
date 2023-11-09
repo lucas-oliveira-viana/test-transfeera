@@ -3,36 +3,35 @@ import receiversService from "@core/services/receivers";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@core/redux/store";
 import {
-  setSourceResponse as setReceiversSourceResponse,
-  setFormData as setReceiversFormData,
+  setSource as setReceiversSource,
+  setToEdit as setReceiverToEdit,
 } from "@core/redux/receiver/Receiver.store";
 import {
   setIsOpen as setIsDialogOpen,
   setContent as setDialogContent,
 } from "@core/redux/dialog/Dialog.store";
-import {
-  setIsOpen as setIsToastOpen,
-  setContent as setToastContent,
-} from "@core/redux/toast/Toast.store";
 import { set as setPage } from "@core/redux/page/Page.store";
 import { useTranslation } from "react-i18next";
 import AddIcon from "@shared/assets/svg/add.svg";
 import styles from "./Home.module.scss";
 import Table from "@shared/components/Table/Table";
-import { receiversTableConfig } from "./ReceiversTableConfig/ReceiversTableConfig";
+import useReceiversTableConfig from "./hooks/useReceiversTableConfig";
 import { PageEnum } from "@core/enum";
 import Spinner from "@shared/components/Spinner/Spinner";
-import { TReceiverSource, TReceiverFormData } from "@core/types";
-import Receiver from "../Receiver/Receiver";
+import { TReceiverSource, TReceiverToEdit } from "@core/types";
 import Button from "@shared/components/Button/Button";
 import useNotifier from "@core/hooks/useNotification";
+import DialogReceiver from "@core/pages/Receiver/Dialog/Dialog";
 
 export default function Home() {
   const dispatch = useDispatch();
-  const { notifyError } = useNotifier();
   const { t } = useTranslation();
+  const { notifyError } = useNotifier();
+
+  const receiversTableConfig = useReceiversTableConfig();
+
   const receivers = useSelector<RootState, TReceiverSource[] | null>(
-    (state) => state.receivers.apiResponse
+    (state) => state.receivers.source
   );
 
   const [receiversToRemove, setReceiversToRemove] = React.useState<
@@ -43,7 +42,7 @@ export default function Home() {
   async function fetchReceivers() {
     try {
       const response = await receiversService.findAll();
-      dispatch(setReceiversSourceResponse(response.data));
+      dispatch(setReceiversSource(response.data));
     } catch (e) {
       notifyError({ children: t("notifications.errorTryingToGetReceivers") });
     }
@@ -54,18 +53,23 @@ export default function Home() {
   }, []);
 
   function handleEdit(data: TReceiverSource) {
-    const receiverFormData: TReceiverFormData = {
+    const receiverToEdit: TReceiverToEdit = {
       id: data.id,
       name: data.name,
-      document: data.tax_id,
+      taxId: data.tax_id,
+      bankId: data.bank_code,
+      branch: data.branch,
+      account: data.account,
+      accountType: data.account_type,
+      status: data.status,
       email: data.email,
-      pixType: data.pix_key_type,
       pixKey: data.pix_key || "",
+      pixType: data.pix_key_type,
     };
 
-    dispatch(setReceiversFormData(receiverFormData));
+    dispatch(setReceiverToEdit(receiverToEdit));
     dispatch(setIsDialogOpen(true));
-    dispatch(setDialogContent(<Receiver />));
+    dispatch(setDialogContent(<DialogReceiver />));
   }
 
   function handleCheckReceivers(data: TReceiverSource[]) {
@@ -79,12 +83,14 @@ export default function Home() {
 
     Promise.all(requests)
       .then(async () => {
-        dispatch(setReceiversSourceResponse(null));
+        dispatch(setReceiversSource(null));
         await fetchReceivers();
         setIsRemoving(false);
       })
       .catch(() => {
-        // TODO abrir popup de erro
+        notifyError({
+          children: t("notifications.errorTryingToRemoveReceivers"),
+        });
       });
   }
 
@@ -123,9 +129,9 @@ export default function Home() {
             <Table
               config={receiversTableConfig}
               data={receivers}
+              disabledRows={isRemoving ? receiversToRemove : []}
               onRowClick={handleEdit}
               onCheck={handleCheckReceivers}
-              disabledRows={isRemoving ? receiversToRemove : []}
             />
           </div>
         )}

@@ -11,7 +11,7 @@ export default {
       taxId: "CPF / CNPJ",
       bank: "Banco",
       branch: "Agência",
-      account: "Conta",
+      account: "CC",
       status: "Status do favorecido",
       statusTypes: {
         draft: "Rascunho",
@@ -22,7 +22,7 @@ export default {
       dataTitle: "Quais os dados do favorecido?",
       dataForm: {
         name: "Qual o nome completo ou  razão social do favorecido?",
-        document: "Qual o CPF ou CNPJ?",
+        taxId: "Qual o CPF ou CNPJ?",
         email: "Qual o e-mail para o envio do comprovante?",
       },
       pixTitle: "Qual a chave pix?",
@@ -41,6 +41,13 @@ export default {
         save: "Salvar",
       },
     },
+    validatedReceiver: {
+      taxId: "CPF / CNPJ",
+      bank: "Banco",
+      branch: "Agência",
+      accountType: "Tipo de conta",
+      email: "E-mail do favorecido"
+    },
     table: {
       empty: "Nenhum registro encontrado",
     },
@@ -48,6 +55,7 @@ export default {
       errorTryingToGetReceivers: "Erro ao buscar favorecidos",
       saveReceiversSuccess: "Favorecido salvo com sucesso",
       updateReceiversSuccess: "Favorecido alterado com sucesso",
+      errorTryingToRemoveReceivers: "Erro ao remover favorecidos",
     },
   },
 };

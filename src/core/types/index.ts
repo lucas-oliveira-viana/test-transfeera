@@ -6,7 +6,21 @@ export type TStatus = "validado" | "rascunho";
 export type TReceiverFormData = {
   id: string;
   name: string;
-  document: string;
+  taxId: string;
+  email: string;
+  pixType: TPixType;
+  pixKey: string;
+};
+
+export type TReceiverToEdit = {
+  id: string;
+  name: string;
+  taxId: string;
+  bankId: string;
+  branch: string;
+  account: string;
+  accountType: string;
+  status: TStatus;
   email: string;
   pixType: TPixType;
   pixKey: string;
@@ -30,8 +44,8 @@ export type TReceiverSource = {
 };
 
 export type TReceiver = {
-  apiResponse: TReceiverSource[];
-  formData: TReceiverFormData;
+  source: TReceiverSource[];
+  receiverToEdit: TReceiverToEdit;
 };
 
 export type TReceiverFormField = {

@@ -26,19 +26,23 @@
     grid-template-columns: 50%;
     column-gap: 30px;
     row-gap: 30px;
-    margin-bottom: 40px;
   }
 }
 
 .actions_wrapper {
   display: flex;
   justify-content: space-between;
+  margin-top: 40px;
 }
 
 .cancel {
   color: $cyan-3;
   border-color: $cyan-3;
   background-color: $white;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .save {
@@ -50,4 +54,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 50px;
 }
