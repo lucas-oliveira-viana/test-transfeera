@@ -1,5 +1,4 @@
 import { setContent as setDialogContent } from "@core/redux/dialog/Dialog.store";
-import { setIsOpen as setIsDialogOpen } from "@core/redux/dialog/Dialog.store";
 import { setToEdit as setReceiverToEdit } from "@core/redux/receiver/Receiver.store";
 import { useDispatch } from "react-redux";
 import CloseableDialog from "@shared/components/Dialog/CloseableDialog/CloseableDialog";
@@ -11,7 +10,6 @@ export default function useReceiverDialog() {
   const dispatch = useDispatch();
 
   function openConfirmReceiverRemoveDialog() {
-    dispatch(setIsDialogOpen(true));
     dispatch(
       setDialogContent(
         <CloseableDialog
@@ -26,13 +24,11 @@ export default function useReceiverDialog() {
   }
 
   function openReceiverDialog() {
-    dispatch(setIsDialogOpen(true));
     dispatch(
       setDialogContent(
         <CloseableDialog
           onClose={() => {
             dispatch(setReceiverToEdit(null));
-            dispatch(setIsDialogOpen(null));
             dispatch(setDialogContent(null));
           }}
         >

@@ -1,7 +1,6 @@
 import React from "react";
 import { ReactNode } from "react";
 import {
-  setIsOpen as setIsToastOpen,
   setContent as setToastContent,
 } from "@core/redux/toast/Toast.store";
 import { useDispatch } from "react-redux";
@@ -18,12 +17,10 @@ export default function useNotifier() {
   const dispatch = useDispatch();
 
   function handleClose() {
-    dispatch(setIsToastOpen(false));
     dispatch(setToastContent(null));
   }
 
   function notifyError({ children }: Props) {
-    dispatch(setIsToastOpen(true));
     dispatch(
       setToastContent(
         <NotificationError onClose={handleClose}>{children}</NotificationError>
@@ -32,7 +29,6 @@ export default function useNotifier() {
   }
 
   function notifySuccess({ children }: Props) {
-    dispatch(setIsToastOpen(true));
     dispatch(
       setToastContent(
         <NotificationSuccess onClose={handleClose}>

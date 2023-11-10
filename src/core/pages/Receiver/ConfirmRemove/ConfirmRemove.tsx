@@ -13,7 +13,6 @@ import {
   setSource as setReceiversSourceResponse,
   setToEdit as setReceiversFormData,
 } from "@core/redux/receiver/Receiver.store";
-import { setIsOpen as setIsDialogOpen } from "@core/redux/dialog/Dialog.store";
 import useNotifier from "@core/hooks/useNotification";
 import useReceiverDialog from "../hooks/useReceiverDialog";
 
@@ -40,7 +39,6 @@ export default function ConfirmRemove() {
       await receiversService.removeById(id);
 
       dispatch(setReceiversFormData(null));
-      dispatch(setIsDialogOpen(false));
       dispatch(setReceiversSourceResponse(null));
       dispatch(setPage(PageEnum.EMPTY));
       setTimeout(() => {

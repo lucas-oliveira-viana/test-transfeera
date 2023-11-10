@@ -64,6 +64,7 @@ export default function Home() {
         <IconInput
           className={styles.filter}
           placeholder={t("home.filterPlaceholder")}
+          value={""}
           onChange={(e) => {
             setFilter(e.target.value);
           }}

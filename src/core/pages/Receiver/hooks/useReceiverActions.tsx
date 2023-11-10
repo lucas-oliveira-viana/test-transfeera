@@ -12,8 +12,6 @@ import {
   setToEdit as setReceiversFormData,
 } from "@core/redux/receiver/Receiver.store";
 import { setContent as setDialogContent } from "@core/redux/dialog/Dialog.store";
-import { setIsOpen as setIsDialogOpen } from "@core/redux/dialog/Dialog.store";
-import { setToEdit as setReceiverToEdit } from "@core/redux/receiver/Receiver.store";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import useNotifier from "@core/hooks/useNotification";
@@ -44,7 +42,7 @@ export default function useReceiverActions(
     dispatch(setReceiversFormData(null));
 
     if (!!edit) {
-      dispatch(setIsDialogOpen(false));
+      dispatch(setDialogContent(null));
       return;
     }
 
@@ -76,7 +74,7 @@ export default function useReceiverActions(
     try {
       await receiversService.save(payload);
 
-      notifySuccess({ children: t("notifications.updateReceiversSuccess") });
+      notifySuccess({ children: t("notifications.saveReceiversSuccess") });
       dispatch(setReceiversFormData(null));
       refreshHome();
     } catch (e) {
@@ -97,7 +95,6 @@ export default function useReceiverActions(
 
         notifySuccess({ children: t("notifications.updateReceiversSuccess") });
         dispatch(setReceiversFormData(null));
-        dispatch(setIsDialogOpen(false));
         dispatch(setDialogContent(null));
         refreshHome();
       } catch (e) {
@@ -132,8 +129,7 @@ export default function useReceiverActions(
       await receiversService.update(payload);
 
       dispatch(setReceiversFormData(null));
-      dispatch(setIsDialogOpen(false));
-
+      dispatch(setDialogContent(null));
       refreshHome();
     } catch (e) {
       notifyError({ children: t("notifications.genericError") });

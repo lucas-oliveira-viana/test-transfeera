@@ -5,21 +5,19 @@ import styles from "./Dialog.modules.scss";
 import { TDialog } from "@core/types";
 
 export default function Dialog() {
-  const { isOpen, content } = useSelector<RootState, TDialog>(
-    (state) => state.dialog
-  );
+  const { content } = useSelector<RootState, TDialog>((state) => state.dialog);
 
   const ref = useRef<HTMLDialogElement>();
 
   useEffect(() => {
     if (ref.current) {
-      isOpen ? ref.current.showModal() : ref.current.close();
+      content ? ref.current.showModal() : ref.current.close();
     }
-  }, [isOpen]);
+  }, [content]);
 
   return (
     <>
-      {isOpen && (
+      {content && (
         <dialog className={styles.dialog} ref={ref}>
           {content}
         </dialog>

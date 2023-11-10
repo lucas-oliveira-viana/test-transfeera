@@ -70,12 +70,10 @@ export type TTableConfig<T> = {
 };
 
 export type TDialog = {
-  isOpen: boolean;
   content: ReactNode | null;
 };
 
 export type TToast = {
-  isOpen: boolean;
   content: ReactNode | null;
 };
 
