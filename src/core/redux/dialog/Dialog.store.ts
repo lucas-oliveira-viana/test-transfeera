@@ -10,10 +10,10 @@ const dialog = createSlice({
   } as TDialog,
   reducers: {
     setIsOpen(state, action: PayloadAction<boolean>) {
-      return { content: state.content, isOpen: action.payload };
+      return { ...state, isOpen: action.payload };
     },
     setContent(state, action: PayloadAction<ReactNode>) {
-      return { isOpen: state.isOpen, content: action.payload };
+      return { ...state, content: action.payload };
     },
   },
 });

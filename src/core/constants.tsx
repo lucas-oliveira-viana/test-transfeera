@@ -35,4 +35,5 @@ export const INITIAL_PAGINATION_CONFIG: TPagination<TReceiverSource> = {
   currentPage: 0,
   pageSize: 8,
   totalPages: 0,
+  totalItems: 0,
 };

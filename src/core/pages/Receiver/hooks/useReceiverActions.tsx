@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { PageEnum } from "@core/enum";
-import { TPixType, TReceiverSource, TReceiverFormData } from "@core/types";
+import {
+  TPixType,
+  TReceiverSource,
+  TReceiverFormData,
+  TStatus,
+} from "@core/types";
 import { set as setPage } from "@core/redux/page/Page.store";
 import {
   setSource as setReceiversSourceResponse,
@@ -16,7 +21,7 @@ import receiversService from "@core/services/receivers";
 import useReceiverDialog from "./useReceiverDialog";
 
 export default function useReceiverActions(
-  isEdit: boolean,
+  edit: TStatus | null,
   formData: TReceiverFormData
 ) {
   const dispatch = useDispatch();
@@ -38,7 +43,7 @@ export default function useReceiverActions(
   function handleCancel() {
     dispatch(setReceiversFormData(null));
 
-    if (isEdit) {
+    if (!!edit) {
       dispatch(setIsDialogOpen(false));
       return;
     }
@@ -46,7 +51,7 @@ export default function useReceiverActions(
     dispatch(setPage(PageEnum.HOME));
   }
 
-  function handleSave() {
+  async function handleSave() {
     const { id, name, taxId, email, pixType, pixKey } = formData;
 
     const payload: TReceiverSource = {
@@ -68,23 +73,41 @@ export default function useReceiverActions(
 
     setIsLoading(true);
 
-    receiversService
-      .save(payload)
-      .then(() => {
-        notifySuccess({ children: t("notifications.updateReceiversSuccess") });
-        dispatch(setReceiversFormData(null));
-        refreshHome();
-      })
-      .catch(() => {
-        notifyError({ children: t("notifications.genericError") });
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    try {
+      await receiversService.save(payload);
+
+      notifySuccess({ children: t("notifications.updateReceiversSuccess") });
+      dispatch(setReceiversFormData(null));
+      refreshHome();
+    } catch (e) {
+      notifyError({ children: t("notifications.genericError") });
+    } finally {
+      setIsLoading(false);
+    }
   }
 
-  function handleEdit() {
+  async function handleEdit() {
     const { id, name, taxId, email, pixType, pixKey } = formData;
+
+    if (edit === "validado") {
+      setIsLoading(true);
+
+      try {
+        await receiversService.patch({ id, email });
+
+        notifySuccess({ children: t("notifications.updateReceiversSuccess") });
+        dispatch(setReceiversFormData(null));
+        dispatch(setIsDialogOpen(false));
+        dispatch(setDialogContent(null));
+        refreshHome();
+      } catch (e) {
+        notifyError({ children: t("notifications.genericError") });
+      } finally {
+        setIsLoading(false);
+      }
+
+      return;
+    }
 
     const payload: TReceiverSource = {
       id: id,
@@ -105,20 +128,18 @@ export default function useReceiverActions(
 
     setIsLoading(true);
 
-    receiversService
-      .update(payload)
-      .then(() => {
-        dispatch(setReceiversFormData(null));
-        dispatch(setIsDialogOpen(false));
+    try {
+      await receiversService.update(payload);
 
-        refreshHome();
-      })
-      .catch(() => {
-        notifyError({ children: t("notifications.genericError") });
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+      dispatch(setReceiversFormData(null));
+      dispatch(setIsDialogOpen(false));
+
+      refreshHome();
+    } catch (e) {
+      notifyError({ children: t("notifications.genericError") });
+    } finally {
+      setIsLoading(false);
+    }
 
     return;
   }

@@ -45,6 +45,7 @@ export type TReceiverSource = {
 
 export type TReceiver = {
   source: TReceiverSource[];
+  sourceTotalCount: number;
   receiverToEdit: TReceiverToEdit;
 };
 
@@ -82,5 +83,16 @@ export type TPagination<T> = {
   currentPage: number;
   pageSize: number;
   totalPages: number;
+  totalItems: number;
   paginatedData?: T[][];
 };
+
+export type TPaginationQueryParams = {
+  _limit: number;
+  _page: number;
+  q?: string;
+};
+
+export type TReceiverQueryParams = Partial<
+  TPaginationQueryParams & TReceiverSource
+>;

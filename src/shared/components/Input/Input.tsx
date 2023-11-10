@@ -11,7 +11,7 @@ type CustomProps = {
   innerRef?: React.LegacyRef<HTMLInputElement>;
 };
 
-type Props = ReactHTMLInputProps & CustomProps;
+export type Props = ReactHTMLInputProps & CustomProps;
 
 export default function Input({ mask, innerRef, ...props }: Props) {
   const [value, setValue] = useState<string>("");

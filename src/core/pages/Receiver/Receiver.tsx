@@ -25,7 +25,7 @@ export default function Receiver() {
     (state) => state.receivers.receiverToEdit
   );
   const styles = receiver ? editStyle : defaultStyle;
-  const isEdit = !!receiver;
+  const edit = receiver && receiver.status ? receiver.status : null;
 
   const {
     data: formData,
@@ -34,7 +34,7 @@ export default function Receiver() {
   } = useReceiverForm(receiver);
 
   const { isLoading, handleCancel, handleSave, handleEdit, handleRemove } =
-    useReceiverActions(isEdit, formData);
+    useReceiverActions(edit, formData);
 
   function renderEdit() {
     return (
@@ -108,6 +108,9 @@ export default function Receiver() {
               <Input
                 value={receiver.email}
                 className={styles.validated_input}
+                onChange={(e) => {
+                  handleChangeFieldValue(e, "email");
+                }}
               />
             </div>
           </div>
@@ -132,7 +135,7 @@ export default function Receiver() {
           )}
         </Button>
         <div className={styles.actions_wrapper_right}>
-          {isEdit && (
+          {!!edit && (
             <Button
               disabled={isLoading}
               className={styles.remove}
@@ -147,7 +150,7 @@ export default function Receiver() {
           )}
           <Button
             className={styles.save}
-            onClick={() => (isEdit ? handleEdit() : handleSave())}
+            onClick={() => (edit ? handleEdit() : handleSave())}
             disabled={isLoading}
           >
             {isLoading ? (
@@ -198,7 +201,7 @@ export default function Receiver() {
 
   return (
     <section className={styles.content}>
-      {isEdit ? renderEdit() : renderForm()}
+      {edit ? renderEdit() : renderForm()}
     </section>
   );
 }

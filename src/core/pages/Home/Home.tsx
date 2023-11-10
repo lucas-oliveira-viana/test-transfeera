@@ -1,31 +1,40 @@
-import React, { useEffect } from "react";
-import receiversService from "@core/services/receivers";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@core/redux/store";
-import { setSource as setReceiversSource } from "@core/redux/receiver/Receiver.store";
 import { set as setPage } from "@core/redux/page/Page.store";
 import { useTranslation } from "react-i18next";
 import AddIcon from "@shared/assets/svg/add.svg";
+import SearchIcon from "@shared/assets/svg/search.svg";
 import styles from "./styles/Home.module.scss";
 import Table from "@shared/components/Table/Table";
 import useReceiversTableConfig from "./hooks/useReceiversTableConfig";
 import { PageEnum } from "@core/enum";
 import Spinner from "@shared/components/Spinner/Spinner";
-import { TReceiverSource } from "@core/types";
+import { TReceiver, TReceiverSource } from "@core/types";
 import Button from "@shared/components/Button/Button";
 import useReceiversActions from "./hooks/useReceiverActions";
 import usePagination from "@core/hooks/usePagination";
 import { INITIAL_PAGINATION_CONFIG } from "@core/constants";
 import Pagination from "@shared/components/Pagination/Pagination";
+import IconInput from "@shared/components/IconInput/IconInput";
+import useReceiverFetch from "./hooks/useReceiverFetch";
 
 export default function Home() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const tableConfig = useReceiversTableConfig();
 
-  const receivers = useSelector<RootState, TReceiverSource[] | null>(
-    (state) => state.receivers.source
+  const { source: receiversData, sourceTotalCount: receiversTotalCount } =
+    useSelector<RootState, TReceiver | null>((state) => state.receivers);
+
+  const { pagination, setCurrentPage } = usePagination<TReceiverSource>(
+    INITIAL_PAGINATION_CONFIG,
+    receiversTotalCount
   );
+
+  const { isFetching, setFilter, fetchReceivers } = useReceiverFetch({
+    currentPage: pagination.currentPage,
+  });
 
   const {
     isRemoving,
@@ -33,27 +42,36 @@ export default function Home() {
     handleEdit,
     handleCheckReceivers,
     handleRemoveReceivers,
-  } = useReceiversActions();
-
-  const { pagination, setCurrentPage } =
-    usePagination<TReceiverSource>(INITIAL_PAGINATION_CONFIG, receivers);
+  } = useReceiversActions({ fetchReceivers });
 
   return (
     <>
       <div className={styles.subheader}>
-        <span className={styles.subheader_text}>{t("tabs.yourReceivers")}</span>
-        <button
-          className={styles.subheader_button}
-          onClick={() => {
-            dispatch(setPage(PageEnum.RECEIVER));
+        <div className={styles.subheader_add}>
+          <span className={styles.subheader_text}>
+            {t("tabs.yourReceivers")}
+          </span>
+          <button
+            className={styles.subheader_button}
+            onClick={() => {
+              dispatch(setPage(PageEnum.RECEIVER));
+            }}
+          >
+            <AddIcon />
+          </button>
+        </div>
+        <IconInput
+          className={styles.filter}
+          placeholder={t("home.filterPlaceholder")}
+          onChange={(e) => {
+            setFilter(e.target.value);
           }}
-        >
-          <AddIcon />
-        </button>
+          icon={<SearchIcon className={styles.search_icon} />}
+        />
       </div>
 
       <section className={styles.content}>
-        {!receivers ? (
+        {!receiversData ? (
           <Spinner size={"80px"} thickness={"10px"} />
         ) : (
           <div className={styles.wrapper}>
@@ -70,20 +88,26 @@ export default function Home() {
                 t("home.removeSelected")
               )}
             </Button>
-            {pagination.paginatedData && (
-              <>
+            {isFetching ? (
+              <div className={styles.fetching_loader_wrapper}>
+                <Spinner size={"60px"} thickness={"5px"} />
+              </div>
+            ) : (
+              <div className={styles.table_wrapper}>
                 <Table
                   config={tableConfig}
-                  data={pagination.paginatedData[pagination.currentPage]}
+                  data={receiversData}
                   disabledRows={isRemoving ? receiversToRemove : []}
                   onRowClick={handleEdit}
                   onCheck={handleCheckReceivers}
                 />
-                <Pagination
-                  pagination={pagination}
-                  setCurrentPage={setCurrentPage}
-                />
-              </>
+              </div>
+            )}
+            {pagination.totalPages > 1 && (
+              <Pagination
+                pagination={pagination}
+                setCurrentPage={setCurrentPage}
+              />
             )}
           </div>
         )}

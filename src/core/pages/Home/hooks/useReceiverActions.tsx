@@ -1,20 +1,21 @@
-import { TReceiverSource, TReceiverToEdit } from "@core/types";
-import React, { useEffect } from "react";
+import React from "react";
+import { TReceiverQueryParams, TReceiverSource, TReceiverToEdit } from "@core/types";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import {
   setSource as setReceiversSource,
   setToEdit as setReceiverToEdit,
 } from "@core/redux/receiver/Receiver.store";
-import {
-  setIsOpen as setIsDialogOpen,
-  setContent as setDialogContent,
-} from "@core/redux/dialog/Dialog.store";
 import useNotifier from "@core/hooks/useNotification";
 import receiversService from "@core/services/receivers";
 import useReceiverDialog from "@core/pages/Receiver/hooks/useReceiverDialog";
+import { INITIAL_PAGINATION_CONFIG } from "@core/constants";
 
-export default function useReceiversActions() {
+type Props = {
+  fetchReceivers: (params: TReceiverQueryParams) => Promise<void>;
+};
+
+export default function useReceiversActions({ fetchReceivers }: Props) {
   const [receiversToRemove, setReceiversToRemove] = React.useState<
     TReceiverSource[]
   >([]);
@@ -24,19 +25,6 @@ export default function useReceiversActions() {
   const { t } = useTranslation();
   const { notifyError } = useNotifier();
   const { openReceiverDialog } = useReceiverDialog();
-
-  async function fetchReceivers() {
-    try {
-      const response = await receiversService.findAll();
-      dispatch(setReceiversSource(response.data));
-    } catch (e) {
-      notifyError({ children: t("notifications.errorTryingToGetReceivers") });
-    }
-  }
-
-  useEffect(() => {
-    fetchReceivers();
-  }, []);
 
   function handleEdit(data: TReceiverSource) {
     const receiverToEdit: TReceiverToEdit = {
@@ -66,17 +54,20 @@ export default function useReceiversActions() {
 
     setIsRemoving(true);
 
-    Promise.all(requests)
-      .then(async () => {
+    try {
+      Promise.all(requests).then(async () => {
         dispatch(setReceiversSource(null));
-        await fetchReceivers();
-        setIsRemoving(false);
-      })
-      .catch(() => {
-        notifyError({
-          children: t("notifications.errorTryingToRemoveReceivers"),
+        await fetchReceivers({
+          _limit: INITIAL_PAGINATION_CONFIG.pageSize,
+          _page: 1,
         });
+        setIsRemoving(false);
       });
+    } catch (e) {
+      notifyError({
+        children: t("notifications.errorTryingToRemoveReceivers"),
+      });
+    }
   }
 
   return {

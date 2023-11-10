@@ -28,16 +28,6 @@ export default function useReceiverForm(initialState: TReceiverToEdit) {
       : INITIAL_STATE_EMPTY;
   }
 
-  function handleChangeFieldValue(
-    e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>,
-    key: keyof TReceiverFormData
-  ) {
-    setData((currData) => ({
-      ...currData,
-      [key]: e.target.value,
-    }));
-  }
-
   const [data, setData] = useState<TReceiverFormData>(getInitalState());
 
   const [config, setConfig] = useState({
@@ -82,6 +72,16 @@ export default function useReceiverForm(initialState: TReceiverToEdit) {
       },
     },
   });
+
+  function handleChangeFieldValue(
+    e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>,
+    key: keyof TReceiverFormData
+  ) {
+    setData((currData) => ({
+      ...currData,
+      [key]: e.target.value,
+    }));
+  }
 
   function hidePixKey(hide: boolean) {
     setConfig((currConfig) => ({

@@ -5,6 +5,7 @@ export default {
     },
     home: {
       removeSelected: "Excluir selecionados",
+      filterPlaceholder: "Nome, CPF, agência ou conta",
     },
     receiver: {
       name: "Favorecido",
@@ -65,8 +66,8 @@ export default {
         "O Histórico de pagamentos para este favorecido será mantido, mas ele será removido da sua lista de favorecidos.",
       actions: {
         cancel: "Cancelar",
-        confirm: "Confirmar exclusão"
-      }
+        confirm: "Confirmar exclusão",
+      },
     },
   },
 };

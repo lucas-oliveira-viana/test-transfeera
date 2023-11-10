@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "../Button/Button";
 import { TPagination } from "@core/types";
 import styles from "./Pagination.module.scss";
@@ -9,12 +9,13 @@ type Props = {
 };
 
 export default function Pagination({ pagination, setCurrentPage }: Props) {
+
   function getAdjacentPages(currentPage: number, totalPages: number) {
     const VIEW_PAGES = 3;
     const LAST_PAGE_FROM_THE_FIRST_GROUP = VIEW_PAGES - 1;
 
     const arrayOfPages = Array.from(
-      Array(pagination.paginatedData.length).keys()
+      Array(totalPages).keys()
     );
 
     if (currentPage < LAST_PAGE_FROM_THE_FIRST_GROUP) {

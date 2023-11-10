@@ -6,16 +6,20 @@ const receiver = createSlice({
   initialState: {
     receiverToEdit: null,
     source: null,
+    sourceTotalCount: null
   },
   reducers: {
     setSource(state, action: PayloadAction<TReceiverSource[] | null>) {
-      return { receiverToEdit: state?.receiverToEdit, source: action.payload };
+      return { ...state, source: action.payload };
     },
     setToEdit(state, action: PayloadAction<TReceiverToEdit | null>) {
-      return { source: state?.source, receiverToEdit: action.payload };
+      return { ...state, receiverToEdit: action.payload };
     },
+    setSourceTotalCount(state, action: PayloadAction<number | null>) {
+      return { ...state, sourceTotalCount: action.payload };
+    }
   },
 });
 
-export const { setSource, setToEdit } = receiver.actions;
+export const { setSource, setToEdit, setSourceTotalCount } = receiver.actions;
 export default receiver.reducer;

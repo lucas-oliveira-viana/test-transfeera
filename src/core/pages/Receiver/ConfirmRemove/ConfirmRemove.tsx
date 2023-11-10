@@ -32,26 +32,25 @@ export default function ConfirmRemove() {
     openReceiverDialog();
   }
 
-  function handleRemove() {
+  async function handleRemove() {
     const { id } = receiver;
     setIsLoading(true);
-    receiversService
-      .removeById(id)
-      .then(() => {
-        dispatch(setReceiversFormData(null));
-        dispatch(setIsDialogOpen(false));
-        dispatch(setReceiversSourceResponse(null));
-        dispatch(setPage(PageEnum.EMPTY));
-        setTimeout(() => {
-          dispatch(setPage(PageEnum.HOME));
-        }, 0);
-      })
-      .catch(() => {
-        notifyError({ children: t("notifications.genericError") });
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+
+    try {
+      await receiversService.removeById(id);
+
+      dispatch(setReceiversFormData(null));
+      dispatch(setIsDialogOpen(false));
+      dispatch(setReceiversSourceResponse(null));
+      dispatch(setPage(PageEnum.EMPTY));
+      setTimeout(() => {
+        dispatch(setPage(PageEnum.HOME));
+      }, 0);
+    } catch (e) {
+      notifyError({ children: t("notifications.genericError") });
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (

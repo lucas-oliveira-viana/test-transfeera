@@ -25,11 +25,15 @@ export default function Table<T>({
     onCheck(checked);
   }, [checked]);
 
-  if (data.length === 0) {
-    return <span>{t("table.empty")}</span>;
-  }
-
   const { style } = config;
+
+  if (data.length === 0) {
+    return (
+      <div className={style.empty_wrapper}>
+        <span className={style.empty_text}>{t("table.empty")}</span>
+      </div>
+    );
+  }
 
   return (
     <table className={style.table}>
