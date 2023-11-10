@@ -19,7 +19,7 @@ import useReceiverDialog from "../hooks/useReceiverDialog";
 export default function ConfirmRemove() {
   const dispatch = useDispatch();
   const receiver = useSelector<RootState, TReceiverToEdit | null>(
-    (state) => state.receivers.receiverToEdit
+    (state) => state.receivers.toEdit
   );
   const { t } = useTranslation();
   const { notifyError } = useNotifier();

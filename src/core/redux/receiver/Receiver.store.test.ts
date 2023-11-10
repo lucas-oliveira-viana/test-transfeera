@@ -18,7 +18,7 @@ describe("Redux Store Test", () => {
     store.dispatch(setSource(null));
   });
 
-  it("should set the receiver data in the store", () => {
+  it("should set the receiver source data in the store", () => {
     const data = [
       {
         id: "12345",
@@ -42,12 +42,12 @@ describe("Redux Store Test", () => {
 
     const state = store.getState();
 
-    expect((state as RootState).receivers).toEqual(data);
+    expect((state as RootState).receivers.source).toEqual(data);
   });
 
-  it("should handle initial state", () => {
+  it("should handle source data initial state", () => {
     const initialState = store.getState();
 
-    expect((initialState as RootState).receivers).toEqual(null);
+    expect((initialState as RootState).receivers.source).toEqual(null);
   });
 });

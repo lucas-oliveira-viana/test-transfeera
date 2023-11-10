@@ -4,7 +4,7 @@ import { TReceiverSource, TReceiverToEdit } from "../../types";
 const receiver = createSlice({
   name: "receivers",
   initialState: {
-    receiverToEdit: null,
+    toEdit: null,
     source: null,
     sourceTotalCount: null
   },

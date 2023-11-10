@@ -22,7 +22,7 @@ import RemoveIcon from "@shared/assets/svg/trash.svg";
 export default function Receiver() {
   const { t } = useTranslation();
   const receiver = useSelector<RootState, TReceiverToEdit | null>(
-    (state) => state.receivers.receiverToEdit
+    (state) => state.receivers.toEdit
   );
   const styles = receiver ? editStyle : defaultStyle;
   const edit = receiver && receiver.status ? receiver.status : null;
