@@ -25,8 +25,8 @@ Como descrito no desafio, a ideia desse projeto é criar uma aplicação front-e
 
 Antes de começar, certifique-se de atender aos seguintes requisitos:
 
-Ter o Node.js de uma versão compatível com o React 18 instalado em seu computador.  
-Ter o Git instalado em seu computador, com as credenciais configuradas.
+- Ter o Node.js de uma versão compatível com o React 18 instalado em seu computador.  
+- Ter o Git instalado em seu computador, com as credenciais configuradas.
 
 ## 🚀 Instalação e Execução
 
