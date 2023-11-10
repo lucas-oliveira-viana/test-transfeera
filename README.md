@@ -1,21 +1,33 @@
 # test-transfeera
 
-## Motivação
+## 💡 Motivação
 
 Este é um projeto criado para uma das etapas do processo seletivo da empresa Transfeera.
 
-## Descrição
+## 🌟 Descrição
 
-Esta aplicação foi desenvolvida utilizando o Framework React na versão 18.2 utilizando a biblioteca JSON Server como um servidor "fake". Suas funcionalidades são: uma listagem de favorecidos em tabela com opção de exclusão em lote, e um modal para edição/visualização.
+Esta aplicação contém uma listagem de favorecidos em tabela com opção de exclusão em lote, uma tela de criação e um modal para edição/visualização.
 
-## Pré-requisitos
+## 🏰 Arquitetura
+
+Como descrito no desafio, a ideia desse projeto é criar uma aplicação front-end escalável. Portanto, para permitir essa escalabilidade, foram utilizadas algumas abordagens como:
+- Webpack configurado manualmente do zero para permitir o controle total das configurações da aplicação.
+- Separação da estrutura de pastas entre dois tipos:
+  - `core`: contém os arquivos não ou pouco reutilizaveis da aplicação ou vitais para o funcionamento. ex: Páginas, componentes como Header e Footer, hooks, tipos...
+  - `shared`: contém os componentes e artefatos reutilizaveis e que poderiam funcionar alheios à aplicação. ex: Assets estáticos, internacionalização, estilos genéricos...
+- Design tokens definidos no arquivo `tokens.scss`.
+- Utilização da biblioteca `Redux Toolkit` para gerenciamento e centralização de estados reutilizáveis pela aplicação
+- Funcionalidade de internacionalização com a biblioteca `i18next`.
+- Todos os componentes criados manualmente para possibilidade de migração à um possível futuro Design System da empresa.
+
+## 🛠️ Pré-requisitos
 
 Antes de começar, certifique-se de atender aos seguintes requisitos:
 
-Ter o Node.js instalado em seu computador.  
+Ter o Node.js de uma versão compatível com o React 18 instalado em seu computador.  
 Ter o Git instalado em seu computador, com as credenciais configuradas.
 
-## Instalação e Execução
+## 🚀 Instalação e Execução
 
 Clone este repositório.
 
