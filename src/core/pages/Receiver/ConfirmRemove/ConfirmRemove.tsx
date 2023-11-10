@@ -15,6 +15,7 @@ import {
 } from "@core/redux/receiver/Receiver.store";
 import useNotifier from "@core/hooks/useNotification";
 import useReceiverDialog from "../hooks/useReceiverDialog";
+import { setContent as setDialogContent } from "@core/redux/dialog/Dialog.store";
 
 export default function ConfirmRemove() {
   const dispatch = useDispatch();
@@ -38,9 +39,10 @@ export default function ConfirmRemove() {
     try {
       await receiversService.removeById(id);
 
+      dispatch(setPage(PageEnum.EMPTY));
+      dispatch(setDialogContent(null));
       dispatch(setReceiversFormData(null));
       dispatch(setReceiversSourceResponse(null));
-      dispatch(setPage(PageEnum.EMPTY));
       setTimeout(() => {
         dispatch(setPage(PageEnum.HOME));
       }, 0);
