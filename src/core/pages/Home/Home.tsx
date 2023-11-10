@@ -18,6 +18,7 @@ import { INITIAL_PAGINATION_CONFIG } from "@core/constants";
 import Pagination from "@shared/components/Pagination/Pagination";
 import IconInput from "@shared/components/IconInput/IconInput";
 import useReceiverFetch from "./hooks/useReceiverFetch";
+import TransfeeraWatermarkLogo from "@shared/assets/svg/transfeera-watermark.svg";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -109,6 +110,9 @@ export default function Home() {
                 setCurrentPage={setCurrentPage}
               />
             )}
+            <div className={styles.watermark_wrapper}>
+              <TransfeeraWatermarkLogo />
+            </div>
           </div>
         )}
       </section>
