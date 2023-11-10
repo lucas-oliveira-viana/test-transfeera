@@ -19,6 +19,7 @@ Como descrito no desafio, a ideia desse projeto é criar uma aplicação front-e
 - Utilização da biblioteca `Redux Toolkit` para gerenciamento e centralização de estados reutilizáveis pela aplicação
 - Funcionalidade de internacionalização com a biblioteca `i18next`.
 - Todos os componentes criados manualmente para possibilidade de migração à um possível futuro Design System da empresa.
+- Proxy configurado com o webpack-dev-server para ser possível realizar a chamada ao mesmo host no caminho  `/api` como comumente é feito no ambiente de produção, evitando conflitos de ambiente.
 
 ## 🛠️ Pré-requisitos
 
