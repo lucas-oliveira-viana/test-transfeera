@@ -45,7 +45,7 @@ Inicie a aplicação do client (front-end):
 npm start
 ```
 
-O navegador deverá abrir automaticamente na página da aplicação, mas caso não funcione, abra um navegador e acesse http://localhost:8080/ para visualizar a aplicação, caso não funcione, tente portas subsequentes: 8081, 8082...
+O navegador deverá abrir automaticamente na página da aplicação, mas caso não funcione, abra um navegador e acesse a url indicada pelo webpack no log do terminal
 
 ### Outros comandos
 
