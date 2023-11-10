@@ -337,6 +337,22 @@
       "status": "rascunho",
       "created_at": "",
       "updated_at": ""
+    },
+    {
+      "id": "EvoGelf",
+      "name": "",
+      "email": "",
+      "tax_id": "",
+      "branch": "",
+      "account": "",
+      "account_type": "",
+      "bank_name": "",
+      "bank_code": "",
+      "pix_key": "",
+      "pix_key_type": "email",
+      "status": "rascunho",
+      "created_at": "",
+      "updated_at": ""
     }
   ]
 }

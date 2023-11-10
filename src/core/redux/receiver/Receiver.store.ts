@@ -13,7 +13,7 @@ const receiver = createSlice({
       return { ...state, source: action.payload };
     },
     setToEdit(state, action: PayloadAction<TReceiverToEdit | null>) {
-      return { ...state, receiverToEdit: action.payload };
+      return { ...state, toEdit: action.payload };
     },
     setSourceTotalCount(state, action: PayloadAction<number | null>) {
       return { ...state, sourceTotalCount: action.payload };

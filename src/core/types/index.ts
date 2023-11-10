@@ -46,7 +46,7 @@ export type TReceiverSource = {
 export type TReceiver = {
   source: TReceiverSource[];
   sourceTotalCount: number;
-  receiverToEdit: TReceiverToEdit;
+  toEdit: TReceiverToEdit;
 };
 
 export type TReceiverFormField = {
