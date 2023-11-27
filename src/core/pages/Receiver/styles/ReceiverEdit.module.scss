@@ -1,0 +1,69 @@
+@import "./Receiver.module.scss";
+@import "@shared/styles/tokens.scss";
+
+.content {
+  padding: 40px 45px;
+}
+
+.wrapper_data {
+  grid-template-columns: 65% 30%;
+}
+
+.header {
+  margin-bottom: 30px;
+
+  &_text {
+    font-weight: 400;
+    font-size: 1.375;
+    color: $gray-5;
+    margin-bottom: 30px;
+  }
+}
+
+.validated {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 40px;
+
+  &_row {
+    display: grid;
+    grid-gap: 140px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &_item {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  &_label {
+    color: $gray-5;
+    font-size: 1rem;
+    font-weight: 300;
+  }
+
+  &_value {
+    color: $gray-5;
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+}
+
+input.validated_input {
+  min-width: 314px;
+  font-weight: 300;
+}
+
+button.remove {
+  padding: 15px 25px;
+  background-color: $red-4;
+  border: none;
+  height: 50px;
+}
+
+.actions_wrapper_right {
+  display: flex;
+  gap: 20px;
+}

@@ -1,0 +1,58 @@
+@import "@shared/styles/tokens.scss";
+@import "@shared/styles/font.scss";
+
+.content {
+  padding: 75px 235px;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 300;
+  color: $gray-5;
+  margin-bottom: 50px;
+}
+
+.wrapper {
+  &_data {
+    display: grid;
+    grid-template-columns: 50% 30%;
+    column-gap: 30px;
+    row-gap: 30px;
+    margin-bottom: 40px;
+  }
+
+  &_pix {
+    display: grid;
+    grid-template-columns: 50%;
+    column-gap: 30px;
+    row-gap: 30px;
+  }
+}
+
+.actions_wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.cancel {
+  color: $cyan-3;
+  border-color: $cyan-3;
+  background-color: $white;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.save {
+  background-color: #289aef;
+  border-color: #289aef;
+  color: $white;
+  min-width: 145.7px;
+  max-height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
