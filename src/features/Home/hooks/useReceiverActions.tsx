@@ -8,7 +8,7 @@ import {
 } from "@core/redux/receiver/Receiver.store";
 import useNotifier from "@core/hooks/useNotification";
 import receiversService from "@core/services/receivers";
-import useReceiverDialog from "@core/pages/Receiver/hooks/useReceiverDialog";
+import useReceiverDialog from "../../Receiver/hooks/useReceiverDialog";
 import { INITIAL_PAGINATION_CONFIG } from "@core/constants";
 
 type Props = {
