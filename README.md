@@ -8,6 +8,8 @@ Este é um projeto criado para uma das etapas do processo seletivo da empresa Tr
 
 Esta aplicação contém uma listagem de favorecidos em tabela com opção de exclusão em lote, uma tela de criação e um modal para edição/visualização.
 
+![image](https://github.com/lucas-oliveira-viana/test-transfeera/assets/31936477/084600f6-0421-43d8-b54d-e61e5f298839)
+
 ## 🏰 Arquitetura
 
 Como descrito no desafio, a ideia desse projeto é criar uma aplicação front-end escalável. Portanto, para permitir essa escalabilidade, foram utilizadas algumas abordagens como:
